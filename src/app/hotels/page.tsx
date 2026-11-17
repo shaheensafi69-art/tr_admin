@@ -18,14 +18,17 @@ import {
   ExternalLink,
   ShieldCheck,
   RefreshCw,
+  X,
 } from 'lucide-react';
 import { getSupabaseClient } from '@/lib/supabase/client';
-import { Hotel as HotelType } from '@/types/database';
+import { Hotel as HotelType, Province, City } from '@/types/database';
 import ModalPortal from '@/components/common/ModalPortal';
 
 export default function HotelsPage() {
   const [hotels, setHotels] = useState<HotelType[]>([]);
   const [selectedHotel, setSelectedHotel] = useState<HotelType | null>(null);
+  const [provinces, setProvinces] = useState<Province[]>([]);
+  const [cities, setCities] = useState<City[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saveStatus, setSaveStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
@@ -38,12 +41,22 @@ export default function HotelsPage() {
   // Quick Add Hotel Modal State (4 Photos - User Request)
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [addName, setAddName] = useState('');
+  const [addProvinceId, setAddProvinceId] = useState('');
+  const [addCityId, setAddCityId] = useState('');
   const [addStars, setAddStars] = useState(5);
   const [addAddress, setAddAddress] = useState('');
   const [addPhone, setAddPhone] = useState('+98 21 ');
   const [addGoogleMapsUrl, setAddGoogleMapsUrl] = useState('');
   const [addCheckInTime, setAddCheckInTime] = useState('14:00');
   const [addCheckOutTime, setAddCheckOutTime] = useState('12:00');
+
+  // Inline Quick City Add Modal
+  const [quickCityOpen, setQuickCityOpen] = useState(false);
+  const [quickCityTarget, setQuickCityTarget] = useState<'add' | 'edit'>('add');
+  const [quickCityProvinceId, setQuickCityProvinceId] = useState('');
+  const [quickCityName, setQuickCityName] = useState('');
+  const [quickCitySlug, setQuickCitySlug] = useState('');
+  const [quickCitySaving, setQuickCitySaving] = useState(false);
   const [addRules, setAddRules] = useState<string[]>([
     'ساعت تحویل اتاق از ساعت ۱۴:۰۰ و ساعت تخلیه حداکثر تا ساعت ۱۲:۰۰ ظهر می‌باشد.',
     'اقامت کودکان تا ۵ سال تمام کاملاً رایگان، ۵ تا ۱۰ سال نیم‌بها، و از ۱۰ سال به بالا نفر کامل محاسبه می‌گردد.',
@@ -62,6 +75,27 @@ export default function HotelsPage() {
   const [uploadingAddSlot, setUploadingAddSlot] = useState<number | null>(null);
   const [uploadingEditSlot, setUploadingEditSlot] = useState<number | null>(null);
 
+  const fetchProvincesAndCities = async () => {
+    const supabase = getSupabaseClient();
+    const [pRes, cRes] = await Promise.all([
+      supabase.from('provinces').select('*').order('name', { ascending: true }),
+      supabase.from('cities').select('*').order('display_order', { ascending: true }).order('name', { ascending: true }),
+    ]);
+    if (pRes.data) {
+      setProvinces(pRes.data);
+      const tehranProv = pRes.data.find((p) => p.name.includes('تهران')) || pRes.data[0];
+      if (tehranProv && !addProvinceId) {
+        setAddProvinceId(tehranProv.id);
+      }
+    }
+    if (cRes.data) {
+      setCities(cRes.data);
+      if (cRes.data.length > 0 && !addCityId) {
+        setAddCityId(cRes.data[0].id);
+      }
+    }
+  };
+
   const fetchHotels = async () => {
     setLoading(true);
     const supabase = getSupabaseClient();
@@ -77,6 +111,7 @@ export default function HotelsPage() {
 
   useEffect(() => {
     fetchHotels();
+    fetchProvincesAndCities();
   }, []);
 
   const handleSave = async (e: React.FormEvent) => {
@@ -91,6 +126,8 @@ export default function HotelsPage() {
       .update({
         name: selectedHotel.name,
         slug: selectedHotel.slug,
+        province_id: selectedHotel.province_id || null,
+        city_id: selectedHotel.city_id || null,
         stars: selectedHotel.stars,
         address: selectedHotel.address,
         phone: selectedHotel.phone,
@@ -244,8 +281,8 @@ export default function HotelsPage() {
       .insert({
         name: addName.trim(),
         slug: cleanSlug,
-        province_id: 'c0000000-0000-0000-0000-000000000001',
-        city_id: 'd0000000-0000-0000-0000-000000000001',
+        province_id: addProvinceId || null,
+        city_id: addCityId || null,
         stars: addStars,
         address: addAddress.trim() || 'تهران',
         google_maps_url: addGoogleMapsUrl.trim() || `https://maps.google.com/?q=${encodeURIComponent(addName.trim())}`,
@@ -282,6 +319,48 @@ export default function HotelsPage() {
       if (newHotel) {
         setSelectedHotel(newHotel);
       }
+    }
+  };
+
+  const handleCreateQuickCity = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!quickCityProvinceId || !quickCityName.trim()) {
+      alert('لطفاً استان و نام شهر را مشخص کنید.');
+      return;
+    }
+    setQuickCitySaving(true);
+    const supabase = getSupabaseClient();
+    const cleanSlug = quickCitySlug.trim() || quickCityName.trim().toLowerCase().replace(/\s+/g, '-');
+    const { data, error } = await supabase
+      .from('cities')
+      .insert({
+        province_id: quickCityProvinceId,
+        name: quickCityName.trim(),
+        slug: cleanSlug,
+        is_active: true,
+        display_order: cities.length + 1,
+      })
+      .select()
+      .single();
+
+    setQuickCitySaving(false);
+    if (error) {
+      alert('خطا در ثبت شهر: ' + error.message);
+    } else if (data) {
+      setCities((prev) => [...prev, data]);
+      if (quickCityTarget === 'edit' && selectedHotel) {
+        setSelectedHotel({
+          ...selectedHotel,
+          province_id: data.province_id,
+          city_id: data.id,
+        });
+      } else {
+        setAddProvinceId(data.province_id);
+        setAddCityId(data.id);
+      }
+      setQuickCityOpen(false);
+      setQuickCityName('');
+      setQuickCitySlug('');
     }
   };
 
@@ -445,6 +524,66 @@ export default function HotelsPage() {
                   dir="ltr"
                   placeholder="https://maps.google.com/..."
                 />
+              </div>
+
+              {/* Province Selector */}
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-neutral-300">استان هتل:</label>
+                <select
+                  value={selectedHotel.province_id || ''}
+                  onChange={(e) => {
+                    const pId = e.target.value;
+                    const firstCity = cities.find((c) => c.province_id === pId);
+                    setSelectedHotel({
+                      ...selectedHotel,
+                      province_id: pId,
+                      city_id: firstCity ? firstCity.id : selectedHotel.city_id,
+                    });
+                  }}
+                  className="w-full glass-input px-4 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
+                >
+                  <option value="">-- انتخاب استان --</option>
+                  {provinces.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* City Selector + Quick Add */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <label className="text-xs font-bold text-neutral-300">شهر هتل:</label>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setQuickCityTarget('edit');
+                      setQuickCityProvinceId(selectedHotel.province_id || provinces[0]?.id || '');
+                      setQuickCityName('');
+                      setQuickCitySlug('');
+                      setQuickCityOpen(true);
+                    }}
+                    className="text-[11px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1"
+                  >
+                    <Plus className="w-3 h-3" />
+                    <span>+ شهر جدید</span>
+                  </button>
+                </div>
+                <select
+                  value={selectedHotel.city_id || ''}
+                  onChange={(e) => setSelectedHotel({ ...selectedHotel, city_id: e.target.value })}
+                  className="w-full glass-input px-4 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
+                >
+                  <option value="">-- انتخاب شهر --</option>
+                  {cities
+                    .filter((c) => !selectedHotel.province_id || c.province_id === selectedHotel.province_id)
+                    .map((c) => (
+                      <option key={c.id} value={c.id}>
+                        {c.name}
+                      </option>
+                    ))}
+                </select>
               </div>
 
               <div className="sm:col-span-2 lg:col-span-3 space-y-1.5">
@@ -872,7 +1011,64 @@ export default function HotelsPage() {
                   />
                 </div>
 
+                {/* Province Selector */}
                 <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-neutral-300">استان هتل:</label>
+                  <select
+                    value={addProvinceId}
+                    onChange={(e) => {
+                      const pId = e.target.value;
+                      setAddProvinceId(pId);
+                      const firstCity = cities.find((c) => c.province_id === pId);
+                      if (firstCity) setAddCityId(firstCity.id);
+                    }}
+                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
+                  >
+                    <option value="">-- انتخاب استان --</option>
+                    {provinces.map((p) => (
+                      <option key={p.id} value={p.id}>
+                        {p.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* City Selector + Quick Add */}
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-bold text-neutral-300">شهر هتل:</label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setQuickCityTarget('add');
+                        setQuickCityProvinceId(addProvinceId || provinces[0]?.id || '');
+                        setQuickCityName('');
+                        setQuickCitySlug('');
+                        setQuickCityOpen(true);
+                      }}
+                      className="text-[11px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1"
+                    >
+                      <Plus className="w-3 h-3" />
+                      <span>+ شهر جدید</span>
+                    </button>
+                  </div>
+                  <select
+                    value={addCityId}
+                    onChange={(e) => setAddCityId(e.target.value)}
+                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
+                  >
+                    <option value="">-- انتخاب شهر --</option>
+                    {cities
+                      .filter((c) => !addProvinceId || c.province_id === addProvinceId)
+                      .map((c) => (
+                        <option key={c.id} value={c.id}>
+                          {c.name}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+
+                <div className="space-y-1.5 sm:col-span-2">
                   <label className="text-xs font-bold text-neutral-300">آدرس و موقعیت مکانی:</label>
                   <input
                     type="text"
@@ -1092,6 +1288,96 @@ export default function HotelsPage() {
             </form>
           </div>
         </div>
+        </ModalPortal>
+      )}
+
+      {/* QUICK INLINE CITY ADD MODAL */}
+      {quickCityOpen && (
+        <ModalPortal>
+          <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+            <div className="glass-card w-full max-w-md rounded-3xl p-6 border border-white/15 shadow-2xl relative">
+              <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <h3 className="text-sm font-black text-white">افزودن سریع شهر جدید</h3>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setQuickCityOpen(false)}
+                  className="p-1 rounded-lg text-neutral-400 hover:text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <form onSubmit={handleCreateQuickCity} className="space-y-3.5">
+                <div>
+                  <label className="block text-xs font-bold text-neutral-300 mb-1">استان:</label>
+                  <select
+                    value={quickCityProvinceId}
+                    onChange={(e) => setQuickCityProvinceId(e.target.value)}
+                    required
+                    className="w-full glass-input px-3 py-2 rounded-xl text-xs bg-[#0b1120]"
+                  >
+                    <option value="" disabled>-- انتخاب استان --</option>
+                    {provinces.map((p) => (
+                      <option key={p.id} value={p.id}>{p.name}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-neutral-300 mb-1">نام شهر (فارسی):</label>
+                  <input
+                    type="text"
+                    value={quickCityName}
+                    onChange={(e) => {
+                      setQuickCityName(e.target.value);
+                      if (!quickCitySlug) {
+                        setQuickCitySlug(e.target.value.trim().toLowerCase().replace(/\s+/g, '-'));
+                      }
+                    }}
+                    placeholder="مثال: کیش، مشهد، کردان، لواسان"
+                    required
+                    className="w-full glass-input px-3 py-2 rounded-xl text-xs text-white"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-neutral-300 mb-1">اسلاگ لاتین (جهت URL):</label>
+                  <input
+                    type="text"
+                    value={quickCitySlug}
+                    onChange={(e) => setQuickCitySlug(e.target.value)}
+                    placeholder="مثال: kish, mashhad, kordan"
+                    required
+                    dir="ltr"
+                    className="w-full glass-input px-3 py-2 rounded-xl text-xs font-mono text-amber-300 text-left"
+                  />
+                </div>
+
+                <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-white/10 mt-4">
+                  <button
+                    type="button"
+                    onClick={() => setQuickCityOpen(false)}
+                    className="px-3 py-2 rounded-xl bg-white/5 text-neutral-300 text-xs font-bold"
+                  >
+                    انصراف
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={quickCitySaving}
+                    className="px-4 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black flex items-center gap-1.5 shadow-md shadow-amber-400/20"
+                  >
+                    {quickCitySaving && <RefreshCw className="w-3.5 h-3.5 animate-spin" />}
+                    <span>ثبت شهر</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </ModalPortal>
       )}
     </div>

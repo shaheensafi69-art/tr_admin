@@ -129,3 +129,23 @@ export interface Booking {
   room?: Room;
   customer?: Customer;
 }
+
+export interface Province {
+  id: string;
+  name: string;
+  slug: string;
+  created_at?: string;
+}
+
+export interface City {
+  id: string;
+  province_id: string;
+  name: string;
+  slug: string;
+  is_active: boolean;
+  display_order: number;
+  created_at?: string;
+  province?: Province;
+  hotels_count?: number;
+  villas_count?: number;
+}

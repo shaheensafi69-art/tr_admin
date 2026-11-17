@@ -22,6 +22,7 @@ import {
   Coins,
   Sparkles,
   LogOut,
+  MapPin,
 } from 'lucide-react';
 
 const menuItems = [
@@ -31,6 +32,7 @@ const menuItems = [
   { href: '/hotels', label: 'اطلاعات هتل‌ها', icon: Hotel },
   { href: '/rooms', label: 'اتاق‌ها و قیمت‌گذاری', icon: BedDouble },
   { href: '/villas', label: 'ویلا و آپارتمان‌ها', icon: Home, badge: 'جدید' },
+  { href: '/cities', label: 'مدیریت شهرها و مناطق', icon: MapPin, badge: 'جدید' },
   { href: '/availability', label: 'تقویم موجودی و مسدودی', icon: CalendarDays },
   { href: '/customers', label: 'مشتریان و مسافران', icon: Users },
   { href: '/reviews', label: 'نظرات مسافران', icon: MessageSquare },

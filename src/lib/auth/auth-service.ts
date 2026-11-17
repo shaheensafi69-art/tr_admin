@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { getSupabaseClient } from '@/lib/supabase/client';
+import { createAdminClient } from '@/lib/supabase/server';
 
 const AUTH_COOKIE_NAME = 'tr_admin_session';
 const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET || 'tehranroom_admin_secure_salt_2026_x89a';
@@ -70,7 +70,7 @@ export async function validateMasterKey(
 
   // 1. Check database admin_access_keys table
   try {
-    const supabase = getSupabaseClient();
+    const supabase = createAdminClient();
     const { data, error } = await supabase
       .from('admin_access_keys')
       .select('id, key_value, title, is_active')
