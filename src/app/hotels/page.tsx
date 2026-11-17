@@ -286,7 +286,7 @@ export default function HotelsPage() {
         stars: addStars,
         address: addAddress.trim() || 'تهران',
         google_maps_url: addGoogleMapsUrl.trim() || `https://maps.google.com/?q=${encodeURIComponent(addName.trim())}`,
-        phone: addPhone.trim() || '+98 21 9100 8899',
+        phone: addPhone.trim() || '+989357122978',
         cover_image: primaryCover,
         images: cleanPhotos.length > 0 ? cleanPhotos : [primaryCover],
         short_description: addDescription.trim() || 'هتل برگزیده و مجلل در تهران‌روم',
@@ -495,7 +495,7 @@ export default function HotelsPage() {
                   onChange={(e) => setSelectedHotel({ ...selectedHotel, phone: e.target.value })}
                   className="w-full glass-input px-4 py-2.5 rounded-2xl text-xs font-mono"
                   dir="ltr"
-                  placeholder="+98 21 9100 8899"
+                  placeholder="+989357122978"
                   required
                 />
               </div>

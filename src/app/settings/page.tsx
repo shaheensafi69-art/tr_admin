@@ -610,7 +610,7 @@ export default function SettingsPage() {
                   onChange={(e) => setSiteSettings({ ...siteSettings, phone: e.target.value })}
                   className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono"
                   dir="ltr"
-                  placeholder="+98 21 9100 8899"
+                  placeholder="+989357122978"
                   required
                 />
               </div>
@@ -623,7 +623,7 @@ export default function SettingsPage() {
                   onChange={(e) => setSiteSettings({ ...siteSettings, whatsapp: e.target.value })}
                   className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono"
                   dir="ltr"
-                  placeholder="+989123456789"
+                  placeholder="+989357122978"
                   required
                 />
               </div>

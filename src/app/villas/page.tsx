@@ -87,7 +87,7 @@ export default function VillasPage() {
   const [name, setName] = useState('');
   const [locationArea, setLocationArea] = useState('');
   const [address, setAddress] = useState('');
-  const [phone, setPhone] = useState('+98 21 9100 8899');
+  const [phone, setPhone] = useState('+989357122978');
   const [googleMapsUrl, setGoogleMapsUrl] = useState('');
   const [bedroomsCount, setBedroomsCount] = useState(3);
   const [bathroomsCount, setBathroomsCount] = useState(2);
@@ -185,7 +185,7 @@ export default function VillasPage() {
     if (cities.length > 0) setCityId(cities[0].id);
     setLocationArea('لواسان، تهران');
     setAddress('');
-    setPhone('+98 21 9100 8899');
+    setPhone('+989357122978');
     setGoogleMapsUrl('');
     setBedroomsCount(3);
     setBathroomsCount(2);
@@ -224,7 +224,7 @@ export default function VillasPage() {
     setCityId(item.city_id || '');
     setLocationArea(item.location_area || '');
     setAddress(item.address || '');
-    setPhone(item.phone || '+98 21 9100 8899');
+    setPhone(item.phone || '+989357122978');
     setGoogleMapsUrl(item.google_maps_url || '');
     setBedroomsCount(item.bedrooms_count || 1);
     setBathroomsCount(item.bathrooms_count || 1);
@@ -877,7 +877,7 @@ export default function VillasPage() {
                       type="text"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="+98 21 9100 8899"
+                      placeholder="+989357122978"
                       className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono"
                       dir="ltr"
                       required
