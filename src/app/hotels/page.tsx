@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import { getSupabaseClient } from '@/lib/supabase/client';
 import { Hotel as HotelType } from '@/types/database';
+import ModalPortal from '@/components/common/ModalPortal';
 
 export default function HotelsPage() {
   const [hotels, setHotels] = useState<HotelType[]>([]);
@@ -807,8 +808,9 @@ export default function HotelsPage() {
           MODAL: QUICK ADD NEW HOTEL (خیلی آسان و سریع بدون دردسر)
          ==================================================================== */}
       {isAddOpen && (
-        <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="w-full max-w-2xl glass-panel-dark rounded-3xl border border-amber-400/30 p-6 sm:p-8 space-y-6 my-8 max-h-[90vh] overflow-y-auto">
+        <ModalPortal>
+          <div className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+            <div className="w-full max-w-2xl glass-panel-dark rounded-3xl border border-amber-400/30 p-6 sm:p-8 space-y-6 my-8 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div>
                 <h2 className="text-xl font-black text-white flex items-center gap-2">
@@ -1090,6 +1092,7 @@ export default function HotelsPage() {
             </form>
           </div>
         </div>
+        </ModalPortal>
       )}
     </div>
   );

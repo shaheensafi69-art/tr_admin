@@ -3,8 +3,17 @@ import './globals.css';
 import AdminShell from '@/components/layout/AdminShell';
 
 export const metadata: Metadata = {
-  title: 'پنل مدیریت رزرواسیون هتل | Hotel Admin Dashboard',
-  description: 'سیستم جامع مدیریت رزرواسیون، تایید فیش‌های بانکی، اتاق‌ها و نرخ‌گذاری هتل تابان تهران‌روم.',
+  title: 'پنل مدیریت رزرواسیون تهران‌روم | TehranRoom Admin',
+  description: 'مرکز جامع مدیریت رزرواسیون هتل‌ها، تایید فیش‌های واریزی مسافران و گزارش‌های مالی پلتفرم تهران‌روم.',
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '64x64', type: 'image/png' },
+      { url: '/favicon.ico' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
 };
 
 export default function RootLayout({

@@ -225,10 +225,10 @@ export default function FinancePage() {
   return (
     <div className="space-y-6 pb-20">
       {/* ====================================================================
-          PRINT ISOLATION STYLES:
+          PRINT ISOLATION STYLES (ROCK-SOLID A4 1-PAGE CORPORATE REPORT):
           1. On screen: Hides #printable-finance-report completely.
           2. On print: Hides the entire screen UI and displays ONLY #printable-finance-report
-             with 100% white background and deep black text to protect printers.
+             with 100% white background and deep black text to protect printers and ink.
          ==================================================================== */}
       <style dangerouslySetInnerHTML={{ __html: `
         @media screen {
@@ -239,7 +239,7 @@ export default function FinancePage() {
         @media print {
           @page {
             size: A4 portrait;
-            margin: 8mm 8mm;
+            margin: 6mm 6mm !important;
           }
           html, body {
             background-color: #ffffff !important;
@@ -248,20 +248,28 @@ export default function FinancePage() {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
           }
-          /* Hide all screen UI, headers, navigation, sidebars and dashboard */
-          aside, header, nav, footer, button, input, select, .print\\:hidden, [class*="print:hidden"], .finance-screen-container {
+          /* Completely eliminate screen dashboard from print */
+          aside, header, nav, footer, button, input, select, .finance-screen-container, [class*="print:hidden"] {
             display: none !important;
+            visibility: hidden !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
           }
           #printable-finance-report {
             display: block !important;
+            visibility: visible !important;
             position: relative !important;
             width: 100% !important;
             margin: 0 !important;
-            padding: 0 !important;
+            padding: 2mm !important;
             background: #ffffff !important;
             color: #000000 !important;
             border: none !important;
             box-shadow: none !important;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
           }
           table {
             border-collapse: collapse !important;

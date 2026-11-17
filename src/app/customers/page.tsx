@@ -26,6 +26,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import AdminHeader from '@/components/layout/AdminHeader';
+import ModalPortal from '@/components/common/ModalPortal';
 import { getSupabaseClient } from '@/lib/supabase/client';
 import { Customer } from '@/types/database';
 import { formatToJalaliString, toPersianDigits } from '@/lib/date-utils';
@@ -358,11 +359,12 @@ export default function CustomersPage() {
       </div>
 
       {/* ====================================================================
-          5. COMPLETE CUSTOMER PROFILE POPUP MODAL (FIXED & FULLY RESPONSIVE)
+          5. COMPLETE CUSTOMER PROFILE POPUP MODAL (FIXED & FULLY RESPONSIVE VIA PORTAL)
          ==================================================================== */}
       {selectedCustomer && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 backdrop-blur-xl p-4 overflow-y-auto">
-          <div className="w-full max-w-4xl glass-panel-dark rounded-3xl border border-amber-400/40 p-6 sm:p-8 space-y-6 my-8 max-h-[90vh] overflow-y-auto shadow-[0_25px_60px_rgba(0,0,0,0.95),inset_0_1.5px_1px_rgba(255,255,255,0.25)] relative">
+        <ModalPortal>
+          <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/85 backdrop-blur-xl p-4 overflow-y-auto">
+            <div className="w-full max-w-4xl glass-panel-dark rounded-3xl border border-amber-400/40 p-6 sm:p-8 space-y-6 my-8 max-h-[90vh] overflow-y-auto shadow-[0_25px_60px_rgba(0,0,0,0.95),inset_0_1.5px_1px_rgba(255,255,255,0.25)] relative">
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div className="flex items-center gap-3">
@@ -596,6 +598,7 @@ export default function CustomersPage() {
             </div>
           </div>
         </div>
+        </ModalPortal>
       )}
     </div>
   );

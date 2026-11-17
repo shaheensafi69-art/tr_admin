@@ -27,6 +27,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import AdminHeader from '@/components/layout/AdminHeader';
+import ModalPortal from '@/components/common/ModalPortal';
 import { supabase } from '@/lib/supabase/client';
 import { Booking } from '@/types/database';
 
@@ -539,8 +540,9 @@ export default function BookingsManagementPage() {
           4. FULL DETAILS MODAL
          ==================================================================== */}
       {selectedBooking && (
-        <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="w-full max-w-2xl glass-panel-dark rounded-3xl border border-amber-400/30 p-6 sm:p-7 space-y-6 max-h-[90vh] overflow-y-auto">
+        <ModalPortal>
+          <div className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+            <div className="w-full max-w-2xl glass-panel-dark rounded-3xl border border-amber-400/30 p-6 sm:p-7 space-y-6 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <div>
                 <span className="text-xs text-neutral-400 block">جزئیات کامل رزرواسیون</span>
@@ -697,31 +699,34 @@ export default function BookingsManagementPage() {
             </div>
           </div>
         </div>
+        </ModalPortal>
       )}
 
       {/* ====================================================================
           5. ZOOM RECEIPT MODAL
          ==================================================================== */}
       {zoomReceipt && (
-        <div
-          className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setZoomReceipt(null)}
-        >
-          <div className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center">
-            <button
-              type="button"
-              onClick={() => setZoomReceipt(null)}
-              className="absolute -top-12 left-0 text-white bg-white/10 hover:bg-white/20 p-2 rounded-full"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            <img
-              src={zoomReceipt}
-              alt="بزرگ‌نمایی فیش"
-              className="max-h-[85vh] object-contain rounded-2xl shadow-2xl border border-white/20"
-            />
+        <ModalPortal>
+          <div
+            className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+            onClick={() => setZoomReceipt(null)}
+          >
+            <div className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center">
+              <button
+                type="button"
+                onClick={() => setZoomReceipt(null)}
+                className="absolute -top-12 left-0 text-white bg-white/10 hover:bg-white/20 p-2 rounded-full"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <img
+                src={zoomReceipt}
+                alt="بزرگ‌نمایی فیش"
+                className="max-h-[85vh] object-contain rounded-2xl shadow-2xl border border-white/20"
+              />
+            </div>
           </div>
-        </div>
+        </ModalPortal>
       )}
     </div>
   );

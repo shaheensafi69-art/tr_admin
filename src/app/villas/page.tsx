@@ -31,6 +31,7 @@ import {
 } from 'lucide-react';
 import { getSupabaseClient } from '@/lib/supabase/client';
 import AdminHeader from '@/components/layout/AdminHeader';
+import ModalPortal from '@/components/common/ModalPortal';
 
 export interface VillaApartment {
   id: string;
@@ -652,8 +653,9 @@ export default function VillasPage() {
           5. MODAL: ADD / EDIT VILLA OR APARTMENT (4 PHOTO SLOTS - USER REQUEST)
          ==================================================================== */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
-          <div className="glass-panel-dark border border-white/15 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 shadow-2xl relative my-auto">
+        <ModalPortal>
+          <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+            <div className="glass-panel-dark border border-white/15 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 shadow-2xl relative my-auto">
             {/* Modal Header */}
             <div className="flex items-center justify-between pb-4 border-b border-white/10">
               <div className="flex items-center gap-3">
@@ -1105,6 +1107,7 @@ export default function VillasPage() {
             </form>
           </div>
         </div>
+        </ModalPortal>
       )}
     </div>
   );

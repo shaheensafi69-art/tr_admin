@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
   CalendarCheck2,
@@ -21,6 +21,7 @@ import {
   CreditCard,
   Coins,
   Sparkles,
+  LogOut,
 } from 'lucide-react';
 
 const menuItems = [
@@ -39,6 +40,20 @@ const menuItems = [
 export default function AdminShell({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+
+  // If on login page, render clean full screen without shell
+  if (pathname === '/login') {
+    return <>{children}</>;
+  }
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch {}
+    router.push('/login');
+    router.refresh();
+  };
 
   return (
     <div className="min-h-screen relative flex flex-col lg:flex-row bg-[#030712] text-slate-100 antialiased selection:bg-amber-400 selection:text-black">
@@ -173,6 +188,14 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
 
             {/* Drawer Footer */}
             <div className="pt-4 border-t border-white/10 space-y-2">
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="w-full py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/20 text-xs font-bold flex items-center justify-center gap-1.5 transition-all"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>خروج از پنل مدیریت</span>
+              </button>
               <a
                 href="http://localhost:3000"
                 target="_blank"
@@ -254,6 +277,15 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
 
         {/* Sidebar Footer */}
         <div className="pt-4 border-t border-white/10 space-y-2.5">
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="w-full py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 hover:text-rose-200 border border-rose-500/25 text-xs font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-sm"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            <span>خروج از حساب مدیریت</span>
+          </button>
+
           <a
             href="http://localhost:3000"
             target="_blank"
