@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     // Validate key against PostgreSQL/Supabase public.admin_access_keys
     const keyInfo = await validateMasterKey(accessKey);
 
-    if (!keyInfo) {
+    if (!keyInfo || !keyInfo.valid) {
       // Artificial delay to deter brute-force attempts
       await new Promise((resolve) => setTimeout(resolve, 600));
       return NextResponse.json(

@@ -217,10 +217,10 @@ export default function FinancePage() {
     period === 'month'
       ? 'گزارش ماه جاری (۳۰ روزه)'
       : period === 'quarter'
-      ? 'گزارش ۳ ماه اخیر (فصلی)'
-      : period === 'year'
-      ? 'گزارش سالانه (۱ ساله)'
-      : `بازه انتخابی دلخواه (${customStartDate} الی ${customEndDate})`;
+        ? 'گزارش ۳ ماه اخیر (فصلی)'
+        : period === 'year'
+          ? 'گزارش سالانه (۱ ساله)'
+          : `بازه انتخابی دلخواه (${customStartDate} الی ${customEndDate})`;
 
   return (
     <div className="space-y-6 pb-20">
@@ -230,7 +230,8 @@ export default function FinancePage() {
           2. On print: Hides the entire screen UI and displays ONLY #printable-finance-report
              with 100% white background and deep black text to protect printers and ink.
          ==================================================================== */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @media screen {
           #printable-finance-report {
             display: none !important;
@@ -307,11 +308,10 @@ export default function FinancePage() {
                 <button
                   type="button"
                   onClick={() => setPeriod('month')}
-                  className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all ${
-                    period === 'month'
+                  className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all ${period === 'month'
                       ? 'bg-amber-400 text-slate-950 font-black shadow-lg shadow-amber-500/25 scale-[1.02]'
                       : 'bg-white/[0.05] text-neutral-300 hover:text-white hover:bg-white/10'
-                  }`}
+                    }`}
                 >
                   ماه جاری (۳۰ روزه)
                 </button>
@@ -319,11 +319,10 @@ export default function FinancePage() {
                 <button
                   type="button"
                   onClick={() => setPeriod('quarter')}
-                  className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all ${
-                    period === 'quarter'
+                  className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all ${period === 'quarter'
                       ? 'bg-amber-400 text-slate-950 font-black shadow-lg shadow-amber-500/25 scale-[1.02]'
                       : 'bg-white/[0.05] text-neutral-300 hover:text-white hover:bg-white/10'
-                  }`}
+                    }`}
                 >
                   ۳ ماه اخیر (فصلی)
                 </button>
@@ -331,11 +330,10 @@ export default function FinancePage() {
                 <button
                   type="button"
                   onClick={() => setPeriod('year')}
-                  className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all ${
-                    period === 'year'
+                  className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all ${period === 'year'
                       ? 'bg-amber-400 text-slate-950 font-black shadow-lg shadow-amber-500/25 scale-[1.02]'
                       : 'bg-white/[0.05] text-neutral-300 hover:text-white hover:bg-white/10'
-                  }`}
+                    }`}
                 >
                   گزارش سالانه (۱ ساله)
                 </button>
@@ -343,11 +341,10 @@ export default function FinancePage() {
                 <button
                   type="button"
                   onClick={() => setPeriod('custom')}
-                  className={`px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-1.5 transition-all ${
-                    period === 'custom'
+                  className={`px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-1.5 transition-all ${period === 'custom'
                       ? 'bg-amber-400 text-slate-950 font-black shadow-lg shadow-amber-500/25 scale-[1.02]'
                       : 'bg-white/[0.05] text-neutral-300 hover:text-white hover:bg-white/10'
-                  }`}
+                    }`}
                 >
                   <Calendar className="w-3.5 h-3.5" />
                   <span>تقویم و بازه دلخواه</span>
@@ -661,18 +658,17 @@ export default function FinancePage() {
                       {Number(b.hotel_net_amount || Number(b.total_amount) * 0.9).toLocaleString('fa-IR')}
                     </td>
                     <td className="py-3 px-3 text-center">
-                      <span className={`px-2.5 py-1 rounded-xl text-[10px] font-black border ${
-                        b.payment_status === 'verified' || b.status === 'confirmed'
+                      <span className={`px-2.5 py-1 rounded-xl text-[10px] font-black border ${b.payment_status === 'verified' || b.status === 'confirmed'
                           ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
                           : b.payment_status === 'pending' || b.status === 'pending'
-                          ? 'border-amber-500/30 bg-amber-500/10 text-amber-400'
-                          : 'border-rose-500/30 bg-rose-500/10 text-rose-400'
-                      }`}>
+                            ? 'border-amber-500/30 bg-amber-500/10 text-amber-400'
+                            : 'border-rose-500/30 bg-rose-500/10 text-rose-400'
+                        }`}>
                         {b.payment_status === 'verified' || b.status === 'confirmed'
                           ? 'وصول‌شده قطعی'
                           : b.payment_status === 'pending' || b.status === 'pending'
-                          ? 'در صف تایید فیش'
-                          : 'ناموفق / لغو'}
+                            ? 'در صف تایید فیش'
+                            : 'ناموفق / لغو'}
                       </span>
                     </td>
                   </tr>

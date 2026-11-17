@@ -97,7 +97,7 @@ export default function VillasPage() {
   const [dailyPrice, setDailyPrice] = useState(8500000);
   const [weekendPrice, setWeekendPrice] = useState(10500000);
   const [description, setDescription] = useState('');
-  
+
   // Amenities
   const [hasPool, setHasPool] = useState(true);
   const [hasJacuzzi, setHasJacuzzi] = useState(true);
@@ -488,11 +488,10 @@ export default function VillasPage() {
           <button
             type="button"
             onClick={() => setTypeFilter('all')}
-            className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all ${
-              typeFilter === 'all'
-                ? 'bg-amber-400 text-slate-950 font-black shadow-lg shadow-amber-500/20'
-                : 'bg-white/[0.05] text-neutral-300 hover:text-white hover:bg-white/10'
-            }`}
+            className={`px-4 py-2 rounded-2xl text-xs font-bold transition-all ${typeFilter === 'all'
+              ? 'bg-amber-400 text-slate-950 font-black shadow-lg shadow-amber-500/20'
+              : 'bg-white/[0.05] text-neutral-300 hover:text-white hover:bg-white/10'
+              }`}
           >
             همه اقامتگاه‌ها ({properties.length})
           </button>
@@ -500,11 +499,10 @@ export default function VillasPage() {
           <button
             type="button"
             onClick={() => setTypeFilter('villa')}
-            className={`px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-1.5 transition-all ${
-              typeFilter === 'villa'
-                ? 'bg-sky-400 text-slate-950 font-black shadow-lg shadow-sky-500/20'
-                : 'bg-white/[0.05] text-neutral-300 hover:text-white hover:bg-white/10'
-            }`}
+            className={`px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-1.5 transition-all ${typeFilter === 'villa'
+              ? 'bg-sky-400 text-slate-950 font-black shadow-lg shadow-sky-500/20'
+              : 'bg-white/[0.05] text-neutral-300 hover:text-white hover:bg-white/10'
+              }`}
           >
             <Waves className="w-3.5 h-3.5" />
             <span>ویلاهای استخردار ({totalVillas})</span>
@@ -513,11 +511,10 @@ export default function VillasPage() {
           <button
             type="button"
             onClick={() => setTypeFilter('apartment')}
-            className={`px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-1.5 transition-all ${
-              typeFilter === 'apartment'
-                ? 'bg-emerald-400 text-slate-950 font-black shadow-lg shadow-emerald-500/20'
-                : 'bg-white/[0.05] text-neutral-300 hover:text-white hover:bg-white/10'
-            }`}
+            className={`px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-1.5 transition-all ${typeFilter === 'apartment'
+              ? 'bg-emerald-400 text-slate-950 font-black shadow-lg shadow-emerald-500/20'
+              : 'bg-white/[0.05] text-neutral-300 hover:text-white hover:bg-white/10'
+              }`}
           >
             <Building className="w-3.5 h-3.5" />
             <span>آپارتمان‌های مبله ({totalApartments})</span>
@@ -576,11 +573,10 @@ export default function VillasPage() {
                 {/* Property Type Badge */}
                 <div className="absolute top-3.5 right-3.5">
                   <span
-                    className={`px-3 py-1 rounded-xl text-xs font-black backdrop-blur-md border shadow-lg ${
-                      item.property_type === 'villa'
-                        ? 'bg-sky-500/80 text-white border-sky-400/40'
-                        : 'bg-emerald-500/80 text-white border-emerald-400/40'
-                    }`}
+                    className={`px-3 py-1 rounded-xl text-xs font-black backdrop-blur-md border shadow-lg ${item.property_type === 'villa'
+                      ? 'bg-sky-500/80 text-white border-sky-400/40'
+                      : 'bg-emerald-500/80 text-white border-emerald-400/40'
+                      }`}
                   >
                     {item.property_type === 'villa' ? '🏡 ویلای استخردار' : '🏢 آپارتمان مبله VIP'}
                   </span>
@@ -736,513 +732,511 @@ export default function VillasPage() {
         <ModalPortal>
           <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
             <div className="glass-panel-dark border border-white/15 rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 sm:p-8 space-y-6 shadow-2xl relative my-auto">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-white/10">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400">
-                  <Home className="w-5 h-5" />
+              {/* Modal Header */}
+              <div className="flex items-center justify-between pb-4 border-b border-white/10">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400">
+                    <Home className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-black text-white">
+                      {editingId ? 'ویرایش مشخصات اقامتگاه اختصاصی' : 'افزودن ویلا یا آپارتمان مبله جدید'}
+                    </h2>
+                    <p className="text-xs text-neutral-400">
+                      ۴ اسلات تصویر، نرخ روزانه و آخر هفته، امکانات رفاهی و قوانین اقامت
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="text-lg font-black text-white">
-                    {editingId ? 'ویرایش مشخصات اقامتگاه اختصاصی' : 'افزودن ویلا یا آپارتمان مبله جدید'}
-                  </h2>
-                  <p className="text-xs text-neutral-400">
-                    ۴ اسلات تصویر، نرخ روزانه و آخر هفته، امکانات رفاهی و قوانین اقامت
-                  </p>
-                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-neutral-400 hover:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setIsModalOpen(false)}
-                className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-neutral-400 hover:text-white transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Modal Form */}
-            <form onSubmit={handleSave} className="space-y-6">
-              {/* Type Selector (Villa vs Apartment) */}
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-amber-300 block">نوع اقامتگاه:</label>
-                <div className="grid grid-cols-2 gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setPropertyType('villa')}
-                    className={`py-3 px-4 rounded-2xl text-xs font-black flex items-center justify-center gap-2 border transition-all ${
-                      propertyType === 'villa'
-                        ? 'bg-sky-400 text-slate-950 border-sky-300 shadow-lg shadow-sky-500/20'
-                        : 'bg-white/[0.04] text-neutral-300 border-white/10 hover:bg-white/10'
-                    }`}
-                  >
-                    <Waves className="w-4 h-4" />
-                    <span>ویلای استخردار / باغ شخصی</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setPropertyType('apartment')}
-                    className={`py-3 px-4 rounded-2xl text-xs font-black flex items-center justify-center gap-2 border transition-all ${
-                      propertyType === 'apartment'
-                        ? 'bg-emerald-400 text-slate-950 border-emerald-300 shadow-lg shadow-emerald-500/20'
-                        : 'bg-white/[0.04] text-neutral-300 border-white/10 hover:bg-white/10'
-                    }`}
-                  >
-                    <Building className="w-4 h-4" />
-                    <span>آپارتمان مبله / پنت‌هاوس لوکس</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Basic Info */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5 sm:col-span-2">
-                  <label className="text-xs font-bold text-neutral-300">عنوان کامل اقامتگاه:</label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="مثال: ویلای دوبلکس استخردار لواسان (چشم‌انداز سد لتیان)"
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
-                    required
-                  />
-                </div>
-
-                {/* Province Selector */}
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-300">استان اقامتگاه:</label>
-                  <select
-                    value={provinceId}
-                    onChange={(e) => {
-                      const pId = e.target.value;
-                      setProvinceId(pId);
-                      const firstCity = cities.find((c) => c.province_id === pId);
-                      if (firstCity) setCityId(firstCity.id);
-                    }}
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
-                  >
-                    <option value="">-- انتخاب استان --</option>
-                    {provinces.map((p) => (
-                      <option key={p.id} value={p.id}>
-                        {p.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* City Selector + Quick Add */}
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold text-neutral-300">شهر اقامتگاه:</label>
+              {/* Modal Form */}
+              <form onSubmit={handleSave} className="space-y-6">
+                {/* Type Selector (Villa vs Apartment) */}
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-amber-300 block">نوع اقامتگاه:</label>
+                  <div className="grid grid-cols-2 gap-3">
                     <button
                       type="button"
-                      onClick={() => {
-                        setQuickCityProvinceId(provinceId || provinces[0]?.id || '');
-                        setQuickCityName('');
-                        setQuickCitySlug('');
-                        setQuickCityOpen(true);
-                      }}
-                      className="text-[11px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1"
+                      onClick={() => setPropertyType('villa')}
+                      className={`py-3 px-4 rounded-2xl text-xs font-black flex items-center justify-center gap-2 border transition-all ${propertyType === 'villa'
+                        ? 'bg-sky-400 text-slate-950 border-sky-300 shadow-lg shadow-sky-500/20'
+                        : 'bg-white/[0.04] text-neutral-300 border-white/10 hover:bg-white/10'
+                        }`}
                     >
-                      <Plus className="w-3 h-3" />
-                      <span>+ شهر جدید</span>
+                      <Waves className="w-4 h-4" />
+                      <span>ویلای استخردار / باغ شخصی</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setPropertyType('apartment')}
+                      className={`py-3 px-4 rounded-2xl text-xs font-black flex items-center justify-center gap-2 border transition-all ${propertyType === 'apartment'
+                        ? 'bg-emerald-400 text-slate-950 border-emerald-300 shadow-lg shadow-emerald-500/20'
+                        : 'bg-white/[0.04] text-neutral-300 border-white/10 hover:bg-white/10'
+                        }`}
+                    >
+                      <Building className="w-4 h-4" />
+                      <span>آپارتمان مبله / پنت‌هاوس لوکس</span>
                     </button>
                   </div>
-                  <select
-                    value={cityId}
-                    onChange={(e) => setCityId(e.target.value)}
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
-                  >
-                    <option value="">-- انتخاب شهر --</option>
-                    {cities
-                      .filter((c) => !provinceId || c.province_id === provinceId)
-                      .map((c) => (
-                        <option key={c.id} value={c.id}>
-                          {c.name}
+                </div>
+
+                {/* Basic Info */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5 sm:col-span-2">
+                    <label className="text-xs font-bold text-neutral-300">عنوان کامل اقامتگاه:</label>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="مثال: ویلای دوبلکس استخردار لواسان (چشم‌انداز سد لتیان)"
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
+                      required
+                    />
+                  </div>
+
+                  {/* Province Selector */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300">استان اقامتگاه:</label>
+                    <select
+                      value={provinceId}
+                      onChange={(e) => {
+                        const pId = e.target.value;
+                        setProvinceId(pId);
+                        const firstCity = cities.find((c) => c.province_id === pId);
+                        if (firstCity) setCityId(firstCity.id);
+                      }}
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
+                    >
+                      <option value="">-- انتخاب استان --</option>
+                      {provinces.map((p) => (
+                        <option key={p.id} value={p.id}>
+                          {p.name}
                         </option>
                       ))}
-                  </select>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-300">منطقه / شهرک:</label>
-                  <input
-                    type="text"
-                    value={locationArea}
-                    onChange={(e) => setLocationArea(e.target.value)}
-                    placeholder="مثال: لواسان کوچک، کردان، زعفرانیه"
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-300">تلفن پشتیبانی و هماهنگی:</label>
-                  <input
-                    type="text"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+98 21 9100 8899"
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono"
-                    dir="ltr"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-1.5 sm:col-span-2">
-                  <label className="text-xs font-bold text-neutral-300">آدرس دقیق:</label>
-                  <input
-                    type="text"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder="تهران، خیابان..."
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-1.5 sm:col-span-2">
-                  <label className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span>لینک لوکیشن گوگل مپ (Google Maps URL):</span>
-                  </label>
-                  <input
-                    type="url"
-                    value={googleMapsUrl}
-                    onChange={(e) => setGoogleMapsUrl(e.target.value)}
-                    placeholder="https://maps.google.com/?q=..."
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono text-left"
-                    dir="ltr"
-                  />
-                </div>
-              </div>
-
-              {/* Specs & Pricing */}
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-4">
-                <span className="text-xs font-bold text-amber-300 block">مشخصات فضا، ظرفیت و قیمت‌گذاری:</span>
-                
-                <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                  <div className="space-y-1">
-                    <label className="text-[11px] text-neutral-400 block">تعداد خواب:</label>
-                    <input
-                      type="number"
-                      min={1}
-                      max={20}
-                      value={bedroomsCount}
-                      onChange={(e) => setBedroomsCount(Number(e.target.value))}
-                      className="w-full glass-input px-3 py-2 rounded-xl text-xs font-mono text-center"
-                    />
+                    </select>
                   </div>
 
-                  <div className="space-y-1">
-                    <label className="text-[11px] text-neutral-400 block">سرویس حمام:</label>
-                    <input
-                      type="number"
-                      min={1}
-                      max={10}
-                      value={bathroomsCount}
-                      onChange={(e) => setBathroomsCount(Number(e.target.value))}
-                      className="w-full glass-input px-3 py-2 rounded-xl text-xs font-mono text-center"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-[11px] text-neutral-400 block">ظرفیت استاندارد:</label>
-                    <input
-                      type="number"
-                      min={1}
-                      max={30}
-                      value={standardCapacity}
-                      onChange={(e) => setStandardCapacity(Number(e.target.value))}
-                      className="w-full glass-input px-3 py-2 rounded-xl text-xs font-mono text-center"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-[11px] text-neutral-400 block">حداکثر ظرفیت:</label>
-                    <input
-                      type="number"
-                      min={1}
-                      max={50}
-                      value={maxCapacity}
-                      onChange={(e) => setMaxCapacity(Number(e.target.value))}
-                      className="w-full glass-input px-3 py-2 rounded-xl text-xs font-mono text-center"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-[11px] text-neutral-400 block">متراژ (متر):</label>
-                    <input
-                      type="number"
-                      min={30}
-                      max={5000}
-                      value={sizeSqm}
-                      onChange={(e) => setSizeSqm(Number(e.target.value))}
-                      className="w-full glass-input px-3 py-2 rounded-xl text-xs font-mono text-center"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  {/* City Selector + Quick Add */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-neutral-300">قیمت هر شب (روزهای عادی):</label>
-                    <div className="relative">
-                      <input
-                        type="number"
-                        value={dailyPrice}
-                        onChange={(e) => setDailyPrice(Number(e.target.value))}
-                        className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono font-black"
-                        step={100000}
-                      />
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] text-neutral-400">تومان</span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-neutral-300">قیمت هر شب (آخر هفته و تعطیلات):</label>
-                    <div className="relative">
-                      <input
-                        type="number"
-                        value={weekendPrice}
-                        onChange={(e) => setWeekendPrice(Number(e.target.value))}
-                        className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono font-black text-amber-400"
-                        step={100000}
-                      />
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] text-neutral-400">تومان</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Amenities Checkboxes */}
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
-                <span className="text-xs font-bold text-amber-300 block">امکانات و تجهیزات اقامتگاه:</span>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
-                    <input
-                      type="checkbox"
-                      checked={hasPool}
-                      onChange={(e) => setHasPool(e.target.checked)}
-                      className="rounded accent-amber-400"
-                    />
-                    <span className="text-xs font-bold text-neutral-200">استخر آبگرم</span>
-                  </label>
-
-                  <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
-                    <input
-                      type="checkbox"
-                      checked={hasJacuzzi}
-                      onChange={(e) => setHasJacuzzi(e.target.checked)}
-                      className="rounded accent-amber-400"
-                    />
-                    <span className="text-xs font-bold text-neutral-200">جکوزی ماساژور</span>
-                  </label>
-
-                  <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
-                    <input
-                      type="checkbox"
-                      checked={hasBilliards}
-                      onChange={(e) => setHasBilliards(e.target.checked)}
-                      className="rounded accent-amber-400"
-                    />
-                    <span className="text-xs font-bold text-neutral-200">میز بیلیارد اسنوکر</span>
-                  </label>
-
-                  <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
-                    <input
-                      type="checkbox"
-                      checked={hasBbq}
-                      onChange={(e) => setHasBbq(e.target.checked)}
-                      className="rounded accent-amber-400"
-                    />
-                    <span className="text-xs font-bold text-neutral-200">باربیکیو و منقل</span>
-                  </label>
-
-                  <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
-                    <input
-                      type="checkbox"
-                      checked={hasParking}
-                      onChange={(e) => setHasParking(e.target.checked)}
-                      className="rounded accent-amber-400"
-                    />
-                    <span className="text-xs font-bold text-neutral-200">پارکینگ اختصاصی</span>
-                  </label>
-
-                  <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
-                    <input
-                      type="checkbox"
-                      checked={hasWifi}
-                      onChange={(e) => setHasWifi(e.target.checked)}
-                      className="rounded accent-amber-400"
-                    />
-                    <span className="text-xs font-bold text-neutral-200">اینترنت پرسرعت وای‌فای</span>
-                  </label>
-                </div>
-              </div>
-
-              {/* 4 Photos Slot Section (User Explicit Request) */}
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-amber-300 block">
-                    عکس‌های اقامتگاه (۴ عکس شاخص و باکیفیت):
-                  </span>
-                  <span className="text-[11px] text-neutral-400 font-mono">۴ اسلات تصویر</span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    { label: 'عکس ۱ (کاور اصلی / نمای کلی)', desc: 'تصویر اصلی کارت و کاور' },
-                    { label: 'عکس ۲ (استخر یا سالن پذیرایی)', desc: 'استخر، نشیمن یا تراس' },
-                    { label: 'عکس ۳ (اتاق خواب اصلی)', desc: 'تخت و اتاق خواب مستر' },
-                    { label: 'عکس ۴ (محوطه، آشپزخانه یا ویو)', desc: 'دید و زاویه تکمیلی' },
-                  ].map((slot, idx) => (
-                    <div
-                      key={idx}
-                      className="p-3 rounded-2xl bg-black/40 border border-white/10 space-y-2.5 flex flex-col justify-between"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-neutral-200">{slot.label}</span>
-                        <span className="text-[10px] text-neutral-500">{slot.desc}</span>
-                      </div>
-
-                      {/* Thumbnail Preview */}
-                      <div className="relative w-full h-28 rounded-xl overflow-hidden bg-neutral-900 border border-white/10">
-                        {photos[idx] ? (
-                          <Image src={photos[idx]} alt={`slot-${idx}`} fill className="object-cover" />
-                        ) : (
-                          <div className="flex flex-col items-center justify-center h-full text-neutral-500 text-xs gap-1">
-                            <Home className="w-5 h-5 opacity-40" />
-                            <span>تصویر انتخاب نشده</span>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* URL input & Upload button */}
-                      <div className="space-y-1.5">
-                        <input
-                          type="text"
-                          value={photos[idx]}
-                          onChange={(e) => {
-                            const next = [...photos];
-                            next[idx] = e.target.value;
-                            setPhotos(next);
-                          }}
-                          placeholder="URL مستقیم تصویر..."
-                          className="w-full glass-input px-3 py-1.5 rounded-xl text-xs font-mono"
-                          dir="ltr"
-                        />
-
-                        <label className="inline-flex items-center justify-center gap-1.5 w-full py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/15 text-neutral-200 text-xs font-bold cursor-pointer transition-colors">
-                          <UploadCloud className="w-3.5 h-3.5 text-amber-400" />
-                          <span>
-                            {uploadingSlot === idx ? 'در حال آپلود...' : 'آپلود عکس در کلودفلر R2'}
-                          </span>
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => handlePhotoUpload(idx, e)}
-                            className="hidden"
-                            disabled={uploadingSlot !== null}
-                          />
-                        </label>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Description */}
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-neutral-300">توضیحات و امکانات رفاهی:</label>
-                <textarea
-                  rows={3}
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  placeholder="توضیحات کامل درباره متراژ، ویو، سیستم صوتی، آرامش محیط و..."
-                  className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs leading-relaxed"
-                />
-              </div>
-
-              {/* Rules List */}
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
-                <span className="text-xs font-bold text-amber-300 block">قوانین و ضوابط اقامت:</span>
-                <div className="space-y-2 max-h-36 overflow-y-auto pr-1">
-                  {rules.map((rule, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between gap-2 p-2 rounded-xl bg-white/[0.03] border border-white/5 text-xs text-neutral-300"
-                    >
-                      <span className="leading-relaxed text-[11px]">• {rule}</span>
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-bold text-neutral-300">شهر اقامتگاه:</label>
                       <button
                         type="button"
                         onClick={() => {
-                          const updated = [...rules];
-                          updated.splice(idx, 1);
-                          setRules(updated);
+                          setQuickCityProvinceId(provinceId || provinces[0]?.id || '');
+                          setQuickCityName('');
+                          setQuickCitySlug('');
+                          setQuickCityOpen(true);
                         }}
-                        className="text-rose-400 hover:text-rose-300 p-1 shrink-0"
+                        className="text-[11px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        <Plus className="w-3 h-3" />
+                        <span>+ شهر جدید</span>
                       </button>
                     </div>
-                  ))}
+                    <select
+                      value={cityId}
+                      onChange={(e) => setCityId(e.target.value)}
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
+                    >
+                      <option value="">-- انتخاب شهر --</option>
+                      {cities
+                        .filter((c) => !provinceId || c.province_id === provinceId)
+                        .map((c) => (
+                          <option key={c.id} value={c.id}>
+                            {c.name}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300">منطقه / شهرک:</label>
+                    <input
+                      type="text"
+                      value={locationArea}
+                      onChange={(e) => setLocationArea(e.target.value)}
+                      placeholder="مثال: لواسان کوچک، کردان، زعفرانیه"
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300">تلفن پشتیبانی و هماهنگی:</label>
+                    <input
+                      type="text"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      placeholder="+98 21 9100 8899"
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono"
+                      dir="ltr"
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-1.5 sm:col-span-2">
+                    <label className="text-xs font-bold text-neutral-300">آدرس دقیق:</label>
+                    <input
+                      type="text"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      placeholder="تهران، خیابان..."
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-1.5 sm:col-span-2">
+                    <label className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5" />
+                      <span>لینک لوکیشن گوگل مپ (Google Maps URL):</span>
+                    </label>
+                    <input
+                      type="url"
+                      value={googleMapsUrl}
+                      onChange={(e) => setGoogleMapsUrl(e.target.value)}
+                      placeholder="https://maps.google.com/?q=..."
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono text-left"
+                      dir="ltr"
+                    />
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-2 pt-1 border-t border-white/5">
-                  <input
-                    type="text"
-                    value={newRuleInput}
-                    onChange={(e) => setNewRuleInput(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
+                {/* Specs & Pricing */}
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-4">
+                  <span className="text-xs font-bold text-amber-300 block">مشخصات فضا، ظرفیت و قیمت‌گذاری:</span>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                    <div className="space-y-1">
+                      <label className="text-[11px] text-neutral-400 block">تعداد خواب:</label>
+                      <input
+                        type="number"
+                        min={1}
+                        max={20}
+                        value={bedroomsCount}
+                        onChange={(e) => setBedroomsCount(Number(e.target.value))}
+                        className="w-full glass-input px-3 py-2 rounded-xl text-xs font-mono text-center"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[11px] text-neutral-400 block">سرویس حمام:</label>
+                      <input
+                        type="number"
+                        min={1}
+                        max={10}
+                        value={bathroomsCount}
+                        onChange={(e) => setBathroomsCount(Number(e.target.value))}
+                        className="w-full glass-input px-3 py-2 rounded-xl text-xs font-mono text-center"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[11px] text-neutral-400 block">ظرفیت استاندارد:</label>
+                      <input
+                        type="number"
+                        min={1}
+                        max={30}
+                        value={standardCapacity}
+                        onChange={(e) => setStandardCapacity(Number(e.target.value))}
+                        className="w-full glass-input px-3 py-2 rounded-xl text-xs font-mono text-center"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[11px] text-neutral-400 block">حداکثر ظرفیت:</label>
+                      <input
+                        type="number"
+                        min={1}
+                        max={50}
+                        value={maxCapacity}
+                        onChange={(e) => setMaxCapacity(Number(e.target.value))}
+                        className="w-full glass-input px-3 py-2 rounded-xl text-xs font-mono text-center"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label className="text-[11px] text-neutral-400 block">متراژ (متر):</label>
+                      <input
+                        type="number"
+                        min={30}
+                        max={5000}
+                        value={sizeSqm}
+                        onChange={(e) => setSizeSqm(Number(e.target.value))}
+                        className="w-full glass-input px-3 py-2 rounded-xl text-xs font-mono text-center"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-neutral-300">قیمت هر شب (روزهای عادی):</label>
+                      <div className="relative">
+                        <input
+                          type="number"
+                          value={dailyPrice}
+                          onChange={(e) => setDailyPrice(Number(e.target.value))}
+                          className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono font-black"
+                          step={100000}
+                        />
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] text-neutral-400">تومان</span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-neutral-300">قیمت هر شب (آخر هفته و تعطیلات):</label>
+                      <div className="relative">
+                        <input
+                          type="number"
+                          value={weekendPrice}
+                          onChange={(e) => setWeekendPrice(Number(e.target.value))}
+                          className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono font-black text-amber-400"
+                          step={100000}
+                        />
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[10px] text-neutral-400">تومان</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Amenities Checkboxes */}
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+                  <span className="text-xs font-bold text-amber-300 block">امکانات و تجهیزات اقامتگاه:</span>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
+                      <input
+                        type="checkbox"
+                        checked={hasPool}
+                        onChange={(e) => setHasPool(e.target.checked)}
+                        className="rounded accent-amber-400"
+                      />
+                      <span className="text-xs font-bold text-neutral-200">استخر آبگرم</span>
+                    </label>
+
+                    <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
+                      <input
+                        type="checkbox"
+                        checked={hasJacuzzi}
+                        onChange={(e) => setHasJacuzzi(e.target.checked)}
+                        className="rounded accent-amber-400"
+                      />
+                      <span className="text-xs font-bold text-neutral-200">جکوزی ماساژور</span>
+                    </label>
+
+                    <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
+                      <input
+                        type="checkbox"
+                        checked={hasBilliards}
+                        onChange={(e) => setHasBilliards(e.target.checked)}
+                        className="rounded accent-amber-400"
+                      />
+                      <span className="text-xs font-bold text-neutral-200">میز بیلیارد اسنوکر</span>
+                    </label>
+
+                    <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
+                      <input
+                        type="checkbox"
+                        checked={hasBbq}
+                        onChange={(e) => setHasBbq(e.target.checked)}
+                        className="rounded accent-amber-400"
+                      />
+                      <span className="text-xs font-bold text-neutral-200">باربیکیو و منقل</span>
+                    </label>
+
+                    <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
+                      <input
+                        type="checkbox"
+                        checked={hasParking}
+                        onChange={(e) => setHasParking(e.target.checked)}
+                        className="rounded accent-amber-400"
+                      />
+                      <span className="text-xs font-bold text-neutral-200">پارکینگ اختصاصی</span>
+                    </label>
+
+                    <label className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.02] border border-white/5 cursor-pointer hover:bg-white/5">
+                      <input
+                        type="checkbox"
+                        checked={hasWifi}
+                        onChange={(e) => setHasWifi(e.target.checked)}
+                        className="rounded accent-amber-400"
+                      />
+                      <span className="text-xs font-bold text-neutral-200">اینترنت پرسرعت وای‌فای</span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* 4 Photos Slot Section (User Explicit Request) */}
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-amber-300 block">
+                      عکس‌های اقامتگاه (۴ عکس شاخص و باکیفیت):
+                    </span>
+                    <span className="text-[11px] text-neutral-400 font-mono">۴ اسلات تصویر</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {[
+                      { label: 'عکس ۱ (کاور اصلی / نمای کلی)', desc: 'تصویر اصلی کارت و کاور' },
+                      { label: 'عکس ۲ (استخر یا سالن پذیرایی)', desc: 'استخر، نشیمن یا تراس' },
+                      { label: 'عکس ۳ (اتاق خواب اصلی)', desc: 'تخت و اتاق خواب مستر' },
+                      { label: 'عکس ۴ (محوطه، آشپزخانه یا ویو)', desc: 'دید و زاویه تکمیلی' },
+                    ].map((slot, idx) => (
+                      <div
+                        key={idx}
+                        className="p-3 rounded-2xl bg-black/40 border border-white/10 space-y-2.5 flex flex-col justify-between"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-bold text-neutral-200">{slot.label}</span>
+                          <span className="text-[10px] text-neutral-500">{slot.desc}</span>
+                        </div>
+
+                        {/* Thumbnail Preview */}
+                        <div className="relative w-full h-28 rounded-xl overflow-hidden bg-neutral-900 border border-white/10">
+                          {photos[idx] ? (
+                            <Image src={photos[idx]} alt={`slot-${idx}`} fill className="object-cover" />
+                          ) : (
+                            <div className="flex flex-col items-center justify-center h-full text-neutral-500 text-xs gap-1">
+                              <Home className="w-5 h-5 opacity-40" />
+                              <span>تصویر انتخاب نشده</span>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* URL input & Upload button */}
+                        <div className="space-y-1.5">
+                          <input
+                            type="text"
+                            value={photos[idx]}
+                            onChange={(e) => {
+                              const next = [...photos];
+                              next[idx] = e.target.value;
+                              setPhotos(next);
+                            }}
+                            placeholder="URL مستقیم تصویر..."
+                            className="w-full glass-input px-3 py-1.5 rounded-xl text-xs font-mono"
+                            dir="ltr"
+                          />
+
+                          <label className="inline-flex items-center justify-center gap-1.5 w-full py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/15 text-neutral-200 text-xs font-bold cursor-pointer transition-colors">
+                            <UploadCloud className="w-3.5 h-3.5 text-amber-400" />
+                            <span>
+                              {uploadingSlot === idx ? 'در حال آپلود...' : 'آپلود عکس در کلودفلر R2'}
+                            </span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => handlePhotoUpload(idx, e)}
+                              className="hidden"
+                              disabled={uploadingSlot !== null}
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Description */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-neutral-300">توضیحات و امکانات رفاهی:</label>
+                  <textarea
+                    rows={3}
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="توضیحات کامل درباره متراژ، ویو، سیستم صوتی، آرامش محیط و..."
+                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs leading-relaxed"
+                  />
+                </div>
+
+                {/* Rules List */}
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+                  <span className="text-xs font-bold text-amber-300 block">قوانین و ضوابط اقامت:</span>
+                  <div className="space-y-2 max-h-36 overflow-y-auto pr-1">
+                    {rules.map((rule, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-center justify-between gap-2 p-2 rounded-xl bg-white/[0.03] border border-white/5 text-xs text-neutral-300"
+                      >
+                        <span className="leading-relaxed text-[11px]">• {rule}</span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updated = [...rules];
+                            updated.splice(idx, 1);
+                            setRules(updated);
+                          }}
+                          className="text-rose-400 hover:text-rose-300 p-1 shrink-0"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-2 pt-1 border-t border-white/5">
+                    <input
+                      type="text"
+                      value={newRuleInput}
+                      onChange={(e) => setNewRuleInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          if (newRuleInput.trim()) {
+                            setRules([...rules, newRuleInput.trim()]);
+                            setNewRuleInput('');
+                          }
+                        }
+                      }}
+                      placeholder="نوشتن قانون جدید اقامت..."
+                      className="flex-1 glass-input px-3 py-2 rounded-xl text-xs"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
                         if (newRuleInput.trim()) {
                           setRules([...rules, newRuleInput.trim()]);
                           setNewRuleInput('');
                         }
-                      }
-                    }}
-                    placeholder="نوشتن قانون جدید اقامت..."
-                    className="flex-1 glass-input px-3 py-2 rounded-xl text-xs"
-                  />
+                      }}
+                      className="px-4 py-2 rounded-xl bg-amber-400 text-slate-950 font-black text-xs hover:bg-amber-300 shrink-0"
+                    >
+                      + افزودن
+                    </button>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <div className="pt-4 border-t border-white/10 flex items-center justify-end gap-3">
                   <button
                     type="button"
-                    onClick={() => {
-                      if (newRuleInput.trim()) {
-                        setRules([...rules, newRuleInput.trim()]);
-                        setNewRuleInput('');
-                      }
-                    }}
-                    className="px-4 py-2 rounded-xl bg-amber-400 text-slate-950 font-black text-xs hover:bg-amber-300 shrink-0"
+                    onClick={() => setIsModalOpen(false)}
+                    className="px-5 py-2.5 rounded-2xl bg-white/[0.08] hover:bg-white/15 text-neutral-300 text-xs font-bold transition-colors"
                   >
-                    + افزودن
+                    انصراف
+                  </button>
+
+                  <button
+                    type="submit"
+                    disabled={saving}
+                    className="px-6 py-2.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs flex items-center gap-2 shadow-lg shadow-amber-500/20 transition-all active:scale-95 disabled:opacity-50"
+                  >
+                    <Check className="w-4 h-4" />
+                    <span>{saving ? 'در حال ذخیره‌سازی...' : editingId ? 'ثبت تغییرات اقامتگاه' : 'ایجاد اقامتگاه جدید'}</span>
                   </button>
                 </div>
-              </div>
-
-              {/* Submit Button */}
-              <div className="pt-4 border-t border-white/10 flex items-center justify-end gap-3">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(false)}
-                  className="px-5 py-2.5 rounded-2xl bg-white/[0.08] hover:bg-white/15 text-neutral-300 text-xs font-bold transition-colors"
-                >
-                  انصراف
-                </button>
-
-                <button
-                  type="submit"
-                  disabled={saving}
-                  className="px-6 py-2.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs flex items-center gap-2 shadow-lg shadow-amber-500/20 transition-all active:scale-95 disabled:opacity-50"
-                >
-                  <Check className="w-4 h-4" />
-                  <span>{saving ? 'در حال ذخیره‌سازی...' : editingId ? 'ثبت تغییرات اقامتگاه' : 'ایجاد اقامتگاه جدید'}</span>
-                </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
         </ModalPortal>
       )}
 

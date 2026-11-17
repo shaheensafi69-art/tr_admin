@@ -147,8 +147,8 @@ export default function HotelsPage() {
         images: Array.isArray(selectedHotel.images) && selectedHotel.images.length > 0
           ? selectedHotel.images
           : selectedHotel.cover_image
-          ? [selectedHotel.cover_image]
-          : [],
+            ? [selectedHotel.cover_image]
+            : [],
         rules: selectedHotel.rules,
         faq: selectedHotel.faq,
         is_published: selectedHotel.is_published,
@@ -402,11 +402,10 @@ export default function HotelsPage() {
 
       {saveStatus && (
         <div
-          className={`p-4 rounded-2xl border flex items-center gap-3 text-xs font-bold ${
-            saveStatus.type === 'success'
-              ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-              : 'bg-rose-500/10 border-rose-500/30 text-rose-300'
-          }`}
+          className={`p-4 rounded-2xl border flex items-center gap-3 text-xs font-bold ${saveStatus.type === 'success'
+            ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
+            : 'bg-rose-500/10 border-rose-500/30 text-rose-300'
+            }`}
         >
           {saveStatus.type === 'success' ? (
             <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />
@@ -431,11 +430,10 @@ export default function HotelsPage() {
                   key={h.id}
                   type="button"
                   onClick={() => setSelectedHotel(h)}
-                  className={`px-5 py-2.5 rounded-2xl text-xs font-bold transition-all ${
-                    selectedHotel.id === h.id
-                      ? 'bg-amber-400 text-slate-950 font-black shadow-lg shadow-amber-400/20'
-                      : 'glass-panel text-neutral-300 hover:text-white'
-                  }`}
+                  className={`px-5 py-2.5 rounded-2xl text-xs font-bold transition-all ${selectedHotel.id === h.id
+                    ? 'bg-amber-400 text-slate-950 font-black shadow-lg shadow-amber-400/20'
+                    : 'glass-panel text-neutral-300 hover:text-white'
+                    }`}
                 >
                   {h.name}
                 </button>
@@ -786,27 +784,27 @@ export default function HotelsPage() {
             </div>
 
             {/* Text Descriptions */}
-              <div className="lg:col-span-2 space-y-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-300">خلاصه معرفی (۱ تا ۲ جمله برای کارت‌ها):</label>
-                  <textarea
-                    rows={2}
-                    value={selectedHotel.short_description || ''}
-                    onChange={(e) => setSelectedHotel({ ...selectedHotel, short_description: e.target.value })}
-                    className="w-full glass-input p-3 rounded-2xl text-xs leading-relaxed"
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-300">معرفی کامل هتل (درباره هتل در صفحه اختصاصی):</label>
-                  <textarea
-                    rows={6}
-                    value={selectedHotel.description || ''}
-                    onChange={(e) => setSelectedHotel({ ...selectedHotel, description: e.target.value })}
-                    className="w-full glass-input p-3 rounded-2xl text-xs leading-relaxed"
-                  />
-                </div>
+            <div className="lg:col-span-2 space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-neutral-300">خلاصه معرفی (۱ تا ۲ جمله برای کارت‌ها):</label>
+                <textarea
+                  rows={2}
+                  value={selectedHotel.short_description || ''}
+                  onChange={(e) => setSelectedHotel({ ...selectedHotel, short_description: e.target.value })}
+                  className="w-full glass-input p-3 rounded-2xl text-xs leading-relaxed"
+                />
               </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-neutral-300">معرفی کامل هتل (درباره هتل در صفحه اختصاصی):</label>
+                <textarea
+                  rows={6}
+                  value={selectedHotel.description || ''}
+                  onChange={(e) => setSelectedHotel({ ...selectedHotel, description: e.target.value })}
+                  className="w-full glass-input p-3 rounded-2xl text-xs leading-relaxed"
+                />
+              </div>
+            </div>
           </div>
 
           {/* 4. HOTEL RULES */}
@@ -950,344 +948,344 @@ export default function HotelsPage() {
         <ModalPortal>
           <div className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
             <div className="w-full max-w-2xl glass-panel-dark rounded-3xl border border-amber-400/30 p-6 sm:p-8 space-y-6 my-8 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <div>
-                <h2 className="text-xl font-black text-white flex items-center gap-2">
-                  <Hotel className="w-6 h-6 text-amber-400" />
-                  <span>افزودن هتل جدید به پلتفرم</span>
-                </h2>
-                <p className="text-xs text-neutral-400 mt-1">
-                  ثبت فوق‌العاده سریع با ذخیره‌سازی خودکار در کلودفلر و دیتابیس
-                </p>
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div>
+                  <h2 className="text-xl font-black text-white flex items-center gap-2">
+                    <Hotel className="w-6 h-6 text-amber-400" />
+                    <span>افزودن هتل جدید به پلتفرم</span>
+                  </h2>
+                  <p className="text-xs text-neutral-400 mt-1">
+                    ثبت فوق‌العاده سریع با ذخیره‌سازی خودکار در کلودفلر و دیتابیس
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsAddOpen(false)}
+                  className="text-neutral-400 hover:text-white p-2 rounded-xl bg-white/5"
+                >
+                  ✕
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={() => setIsAddOpen(false)}
-                className="text-neutral-400 hover:text-white p-2 rounded-xl bg-white/5"
-              >
-                ✕
-              </button>
-            </div>
 
-            <form onSubmit={handleCreateHotel} className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-300">نام هتل (فارسی):</label>
-                  <input
-                    type="text"
-                    value={addName}
-                    onChange={(e) => setAddName(e.target.value)}
-                    placeholder="مثال: هتل اسپیناس پالاس تهران"
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-300">درجه و تعداد ستاره:</label>
-                  <select
-                    value={addStars}
-                    onChange={(e) => setAddStars(parseInt(e.target.value) || 5)}
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
-                  >
-                    <option value={5}>۵ ستاره لوکس</option>
-                    <option value={4}>۴ ستاره عالی</option>
-                    <option value={3}>۳ ستاره استاندارد</option>
-                    <option value={2}>۲ ستاره اقتصادی</option>
-                    <option value={1}>۱ ستاره</option>
-                  </select>
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-300">شماره تلفن رزرو (با کد کشور):</label>
-                  <input
-                    type="text"
-                    value={addPhone}
-                    onChange={(e) => setAddPhone(e.target.value)}
-                    placeholder="+98 21 7567 5000"
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono"
-                    dir="ltr"
-                    required
-                  />
-                </div>
-
-                {/* Province Selector */}
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-300">استان هتل:</label>
-                  <select
-                    value={addProvinceId}
-                    onChange={(e) => {
-                      const pId = e.target.value;
-                      setAddProvinceId(pId);
-                      const firstCity = cities.find((c) => c.province_id === pId);
-                      if (firstCity) setAddCityId(firstCity.id);
-                    }}
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
-                  >
-                    <option value="">-- انتخاب استان --</option>
-                    {provinces.map((p) => (
-                      <option key={p.id} value={p.id}>
-                        {p.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* City Selector + Quick Add */}
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold text-neutral-300">شهر هتل:</label>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setQuickCityTarget('add');
-                        setQuickCityProvinceId(addProvinceId || provinces[0]?.id || '');
-                        setQuickCityName('');
-                        setQuickCitySlug('');
-                        setQuickCityOpen(true);
-                      }}
-                      className="text-[11px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1"
-                    >
-                      <Plus className="w-3 h-3" />
-                      <span>+ شهر جدید</span>
-                    </button>
+              <form onSubmit={handleCreateHotel} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300">نام هتل (فارسی):</label>
+                    <input
+                      type="text"
+                      value={addName}
+                      onChange={(e) => setAddName(e.target.value)}
+                      placeholder="مثال: هتل اسپیناس پالاس تهران"
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
+                      required
+                    />
                   </div>
-                  <select
-                    value={addCityId}
-                    onChange={(e) => setAddCityId(e.target.value)}
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
-                  >
-                    <option value="">-- انتخاب شهر --</option>
-                    {cities
-                      .filter((c) => !addProvinceId || c.province_id === addProvinceId)
-                      .map((c) => (
-                        <option key={c.id} value={c.id}>
-                          {c.name}
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300">درجه و تعداد ستاره:</label>
+                    <select
+                      value={addStars}
+                      onChange={(e) => setAddStars(parseInt(e.target.value) || 5)}
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
+                    >
+                      <option value={5}>۵ ستاره لوکس</option>
+                      <option value={4}>۴ ستاره عالی</option>
+                      <option value={3}>۳ ستاره استاندارد</option>
+                      <option value={2}>۲ ستاره اقتصادی</option>
+                      <option value={1}>۱ ستاره</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300">شماره تلفن رزرو (با کد کشور):</label>
+                    <input
+                      type="text"
+                      value={addPhone}
+                      onChange={(e) => setAddPhone(e.target.value)}
+                      placeholder="+98 21 7567 5000"
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono"
+                      dir="ltr"
+                      required
+                    />
+                  </div>
+
+                  {/* Province Selector */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300">استان هتل:</label>
+                    <select
+                      value={addProvinceId}
+                      onChange={(e) => {
+                        const pId = e.target.value;
+                        setAddProvinceId(pId);
+                        const firstCity = cities.find((c) => c.province_id === pId);
+                        if (firstCity) setAddCityId(firstCity.id);
+                      }}
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
+                    >
+                      <option value="">-- انتخاب استان --</option>
+                      {provinces.map((p) => (
+                        <option key={p.id} value={p.id}>
+                          {p.name}
                         </option>
                       ))}
-                  </select>
-                </div>
+                    </select>
+                  </div>
 
-                <div className="space-y-1.5 sm:col-span-2">
-                  <label className="text-xs font-bold text-neutral-300">آدرس و موقعیت مکانی:</label>
-                  <input
-                    type="text"
-                    value={addAddress}
-                    onChange={(e) => setAddAddress(e.target.value)}
-                    placeholder="مثال: تهران، سعادت‌آباد، میدان بهرود"
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
-                    required
-                  />
-                </div>
-
-                {/* Google Maps Location Link (User Request) */}
-                <div className="space-y-1.5 sm:col-span-2">
-                  <label className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
-                    <MapPin className="w-3.5 h-3.5" />
-                    <span>لینک موقعیت مکانی در گوگل مپ (Google Maps URL):</span>
-                  </label>
-                  <input
-                    type="url"
-                    value={addGoogleMapsUrl}
-                    onChange={(e) => setAddGoogleMapsUrl(e.target.value)}
-                    placeholder="https://maps.google.com/?q=..."
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono text-left"
-                    dir="ltr"
-                  />
-                  <span className="text-[10px] text-neutral-400 block">
-                    لینک اشتراک‌گذاری لوکیشن از گوگل مپ جهت نمایش دکمه مسیریابی برای مسافران
-                  </span>
-                </div>
-
-                {/* Check-in and Check-out Times */}
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-300">ساعت تحویل (Check-in):</label>
-                  <input
-                    type="text"
-                    value={addCheckInTime}
-                    onChange={(e) => setAddCheckInTime(e.target.value)}
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono text-center"
-                    placeholder="14:00"
-                  />
-                </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-neutral-300">ساعت تخلیه (Check-out):</label>
-                  <input
-                    type="text"
-                    value={addCheckOutTime}
-                    onChange={(e) => setAddCheckOutTime(e.target.value)}
-                    className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono text-center"
-                    placeholder="12:00"
-                  />
-                </div>
-              </div>
-
-              {/* Hotel Rules Section (User Request) */}
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
-                <span className="text-xs font-bold text-amber-300 block flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-amber-400" />
-                  <span>قوانین و ضوابط اقامتگاه (Rules & Policies):</span>
-                </span>
-                
-                <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
-                  {addRules.map((rule, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-xs text-neutral-300"
-                    >
-                      <span className="leading-relaxed text-[11px]">• {rule}</span>
+                  {/* City Selector + Quick Add */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-bold text-neutral-300">شهر هتل:</label>
                       <button
                         type="button"
                         onClick={() => {
-                          const updated = [...addRules];
-                          updated.splice(idx, 1);
-                          setAddRules(updated);
+                          setQuickCityTarget('add');
+                          setQuickCityProvinceId(addProvinceId || provinces[0]?.id || '');
+                          setQuickCityName('');
+                          setQuickCitySlug('');
+                          setQuickCityOpen(true);
                         }}
-                        className="text-rose-400 hover:text-rose-300 p-1 shrink-0"
-                        title="حذف این قانون"
+                        className="text-[11px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
+                        <Plus className="w-3 h-3" />
+                        <span>+ شهر جدید</span>
                       </button>
                     </div>
-                  ))}
+                    <select
+                      value={addCityId}
+                      onChange={(e) => setAddCityId(e.target.value)}
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs bg-[#0b1120]"
+                    >
+                      <option value="">-- انتخاب شهر --</option>
+                      {cities
+                        .filter((c) => !addProvinceId || c.province_id === addProvinceId)
+                        .map((c) => (
+                          <option key={c.id} value={c.id}>
+                            {c.name}
+                          </option>
+                        ))}
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5 sm:col-span-2">
+                    <label className="text-xs font-bold text-neutral-300">آدرس و موقعیت مکانی:</label>
+                    <input
+                      type="text"
+                      value={addAddress}
+                      onChange={(e) => setAddAddress(e.target.value)}
+                      placeholder="مثال: تهران، سعادت‌آباد، میدان بهرود"
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs"
+                      required
+                    />
+                  </div>
+
+                  {/* Google Maps Location Link (User Request) */}
+                  <div className="space-y-1.5 sm:col-span-2">
+                    <label className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                      <MapPin className="w-3.5 h-3.5" />
+                      <span>لینک موقعیت مکانی در گوگل مپ (Google Maps URL):</span>
+                    </label>
+                    <input
+                      type="url"
+                      value={addGoogleMapsUrl}
+                      onChange={(e) => setAddGoogleMapsUrl(e.target.value)}
+                      placeholder="https://maps.google.com/?q=..."
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono text-left"
+                      dir="ltr"
+                    />
+                    <span className="text-[10px] text-neutral-400 block">
+                      لینک اشتراک‌گذاری لوکیشن از گوگل مپ جهت نمایش دکمه مسیریابی برای مسافران
+                    </span>
+                  </div>
+
+                  {/* Check-in and Check-out Times */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300">ساعت تحویل (Check-in):</label>
+                    <input
+                      type="text"
+                      value={addCheckInTime}
+                      onChange={(e) => setAddCheckInTime(e.target.value)}
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono text-center"
+                      placeholder="14:00"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-neutral-300">ساعت تخلیه (Check-out):</label>
+                    <input
+                      type="text"
+                      value={addCheckOutTime}
+                      onChange={(e) => setAddCheckOutTime(e.target.value)}
+                      className="w-full glass-input px-3.5 py-2.5 rounded-2xl text-xs font-mono text-center"
+                      placeholder="12:00"
+                    />
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-2 pt-1 border-t border-white/5">
-                  <input
-                    type="text"
-                    value={newAddRuleInput}
-                    onChange={(e) => setNewAddRuleInput(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
+                {/* Hotel Rules Section (User Request) */}
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+                  <span className="text-xs font-bold text-amber-300 block flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-amber-400" />
+                    <span>قوانین و ضوابط اقامتگاه (Rules & Policies):</span>
+                  </span>
+
+                  <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+                    {addRules.map((rule, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-xs text-neutral-300"
+                      >
+                        <span className="leading-relaxed text-[11px]">• {rule}</span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updated = [...addRules];
+                            updated.splice(idx, 1);
+                            setAddRules(updated);
+                          }}
+                          className="text-rose-400 hover:text-rose-300 p-1 shrink-0"
+                          title="حذف این قانون"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center gap-2 pt-1 border-t border-white/5">
+                    <input
+                      type="text"
+                      value={newAddRuleInput}
+                      onChange={(e) => setNewAddRuleInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          if (newAddRuleInput.trim()) {
+                            setAddRules([...addRules, newAddRuleInput.trim()]);
+                            setNewAddRuleInput('');
+                          }
+                        }
+                      }}
+                      placeholder="نوشتن قانون جدید (مثلاً: همراه داشتن کارت ملی الزامی است)..."
+                      className="flex-1 glass-input px-3 py-2 rounded-xl text-xs"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
                         if (newAddRuleInput.trim()) {
                           setAddRules([...addRules, newAddRuleInput.trim()]);
                           setNewAddRuleInput('');
                         }
-                      }
-                    }}
-                    placeholder="نوشتن قانون جدید (مثلاً: همراه داشتن کارت ملی الزامی است)..."
-                    className="flex-1 glass-input px-3 py-2 rounded-xl text-xs"
+                      }}
+                      className="px-4 py-2 rounded-xl bg-amber-400 text-slate-950 font-black text-xs hover:bg-amber-300 transition-colors shrink-0"
+                    >
+                      + افزودن
+                    </button>
+                  </div>
+                </div>
+
+                {/* Photo Upload to Cloudflare R2 (4 Distinct Photo Slots - User Request) */}
+                <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-amber-300 block">
+                      گالری تصاویر هتل (۴ اسلات تصویر باکیفیت):
+                    </span>
+                    <span className="text-[11px] font-mono text-amber-400">۴ تصویر مجزا</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {[
+                      { label: 'عکس ۱: نمای بیرونی / کاور اصلی', desc: 'کاور اصلی هتل در سایت' },
+                      { label: 'عکس ۲: لابی و پذیرش هتل', desc: 'فضای ورودی و تشریفات' },
+                      { label: 'عکس ۳: رستوران و کافی‌شاپ', desc: 'بوفه صبحانه و غذاخوری' },
+                      { label: 'عکس ۴: امکانات، استخر و سالن‌ها', desc: 'مجموعه ورزشی و سالن‌ها' },
+                    ].map((slot, idx) => (
+                      <div
+                        key={idx}
+                        className="p-3 rounded-2xl bg-black/40 border border-white/10 space-y-2.5 flex flex-col justify-between"
+                      >
+                        <div>
+                          <span className="text-xs font-bold text-white block">{slot.label}</span>
+                          <span className="text-[10px] text-neutral-400 block">{slot.desc}</span>
+                        </div>
+
+                        {/* Thumbnail Preview */}
+                        <div className="relative w-full h-28 rounded-xl overflow-hidden bg-neutral-900 border border-white/10">
+                          {addPhotos[idx] ? (
+                            <Image src={addPhotos[idx]} alt={`add-slot-${idx}`} fill className="object-cover" />
+                          ) : (
+                            <div className="w-full h-full flex flex-col items-center justify-center text-neutral-500 text-xs gap-1">
+                              <Hotel className="w-5 h-5 opacity-40" />
+                              <span>تصویر انتخاب نشده</span>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* URL input & Upload button */}
+                        <div className="space-y-1.5">
+                          <input
+                            type="text"
+                            value={addPhotos[idx]}
+                            onChange={(e) => {
+                              const next = [...addPhotos];
+                              next[idx] = e.target.value;
+                              setAddPhotos(next);
+                            }}
+                            placeholder="URL مستقیم تصویر..."
+                            className="w-full glass-input px-3 py-1.5 rounded-xl text-xs font-mono"
+                            dir="ltr"
+                          />
+
+                          <label className="inline-flex items-center justify-center gap-1.5 w-full py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/15 text-neutral-200 text-xs font-bold cursor-pointer transition-colors">
+                            <UploadCloud className="w-3.5 h-3.5 text-amber-400" />
+                            <span>
+                              {uploadingAddSlot === idx ? 'در حال آپلود...' : 'آپلود در کلودفلر R2'}
+                            </span>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={(e) => handleAddPhotoUpload(idx, e)}
+                              className="hidden"
+                              disabled={uploadingAddSlot !== null}
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-neutral-300">توضیح کوتاه درباره هتل:</label>
+                  <textarea
+                    rows={2}
+                    value={addDescription}
+                    onChange={(e) => setAddDescription(e.target.value)}
+                    placeholder="کاخ باشکوه در شمال پایتخت با ویو ۳۶۰ درجه و امکانات اقامتی VIP..."
+                    className="w-full glass-input p-3 rounded-2xl text-xs leading-relaxed"
                   />
+                </div>
+
+                <div className="flex items-center justify-end gap-3 pt-3 border-t border-white/10">
                   <button
                     type="button"
-                    onClick={() => {
-                      if (newAddRuleInput.trim()) {
-                        setAddRules([...addRules, newAddRuleInput.trim()]);
-                        setNewAddRuleInput('');
-                      }
-                    }}
-                    className="px-4 py-2 rounded-xl bg-amber-400 text-slate-950 font-black text-xs hover:bg-amber-300 transition-colors shrink-0"
+                    onClick={() => setIsAddOpen(false)}
+                    className="px-5 py-2.5 rounded-2xl glass-panel text-xs text-neutral-400 hover:text-white"
                   >
-                    + افزودن
+                    انصراف
+                  </button>
+
+                  <button
+                    type="submit"
+                    disabled={creatingHotel || uploadingAddSlot !== null}
+                    className="gold-glow-btn px-7 py-3 rounded-2xl text-xs font-black flex items-center gap-2"
+                  >
+                    <Plus className="w-4 h-4" />
+                    <span>{creatingHotel ? 'در حال ایجاد هتل...' : 'ثبت و انتشار هتل جدید'}</span>
                   </button>
                 </div>
-              </div>
-
-              {/* Photo Upload to Cloudflare R2 (4 Distinct Photo Slots - User Request) */}
-              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-amber-300 block">
-                    گالری تصاویر هتل (۴ اسلات تصویر باکیفیت):
-                  </span>
-                  <span className="text-[11px] font-mono text-amber-400">۴ تصویر مجزا</span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    { label: 'عکس ۱: نمای بیرونی / کاور اصلی', desc: 'کاور اصلی هتل در سایت' },
-                    { label: 'عکس ۲: لابی و پذیرش هتل', desc: 'فضای ورودی و تشریفات' },
-                    { label: 'عکس ۳: رستوران و کافی‌شاپ', desc: 'بوفه صبحانه و غذاخوری' },
-                    { label: 'عکس ۴: امکانات، استخر و سالن‌ها', desc: 'مجموعه ورزشی و سالن‌ها' },
-                  ].map((slot, idx) => (
-                    <div
-                      key={idx}
-                      className="p-3 rounded-2xl bg-black/40 border border-white/10 space-y-2.5 flex flex-col justify-between"
-                    >
-                      <div>
-                        <span className="text-xs font-bold text-white block">{slot.label}</span>
-                        <span className="text-[10px] text-neutral-400 block">{slot.desc}</span>
-                      </div>
-
-                      {/* Thumbnail Preview */}
-                      <div className="relative w-full h-28 rounded-xl overflow-hidden bg-neutral-900 border border-white/10">
-                        {addPhotos[idx] ? (
-                          <Image src={addPhotos[idx]} alt={`add-slot-${idx}`} fill className="object-cover" />
-                        ) : (
-                          <div className="w-full h-full flex flex-col items-center justify-center text-neutral-500 text-xs gap-1">
-                            <Hotel className="w-5 h-5 opacity-40" />
-                            <span>تصویر انتخاب نشده</span>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* URL input & Upload button */}
-                      <div className="space-y-1.5">
-                        <input
-                          type="text"
-                          value={addPhotos[idx]}
-                          onChange={(e) => {
-                            const next = [...addPhotos];
-                            next[idx] = e.target.value;
-                            setAddPhotos(next);
-                          }}
-                          placeholder="URL مستقیم تصویر..."
-                          className="w-full glass-input px-3 py-1.5 rounded-xl text-xs font-mono"
-                          dir="ltr"
-                        />
-
-                        <label className="inline-flex items-center justify-center gap-1.5 w-full py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/15 text-neutral-200 text-xs font-bold cursor-pointer transition-colors">
-                          <UploadCloud className="w-3.5 h-3.5 text-amber-400" />
-                          <span>
-                            {uploadingAddSlot === idx ? 'در حال آپلود...' : 'آپلود در کلودفلر R2'}
-                          </span>
-                          <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => handleAddPhotoUpload(idx, e)}
-                            className="hidden"
-                            disabled={uploadingAddSlot !== null}
-                          />
-                        </label>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-neutral-300">توضیح کوتاه درباره هتل:</label>
-                <textarea
-                  rows={2}
-                  value={addDescription}
-                  onChange={(e) => setAddDescription(e.target.value)}
-                  placeholder="کاخ باشکوه در شمال پایتخت با ویو ۳۶۰ درجه و امکانات اقامتی VIP..."
-                  className="w-full glass-input p-3 rounded-2xl text-xs leading-relaxed"
-                />
-              </div>
-
-              <div className="flex items-center justify-end gap-3 pt-3 border-t border-white/10">
-                <button
-                  type="button"
-                  onClick={() => setIsAddOpen(false)}
-                  className="px-5 py-2.5 rounded-2xl glass-panel text-xs text-neutral-400 hover:text-white"
-                >
-                  انصراف
-                </button>
-
-                <button
-                  type="submit"
-                  disabled={creatingHotel || uploadingAddSlot !== null}
-                  className="gold-glow-btn px-7 py-3 rounded-2xl text-xs font-black flex items-center gap-2"
-                >
-                  <Plus className="w-4 h-4" />
-                  <span>{creatingHotel ? 'در حال ایجاد هتل...' : 'ثبت و انتشار هتل جدید'}</span>
-                </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
         </ModalPortal>
       )}
 

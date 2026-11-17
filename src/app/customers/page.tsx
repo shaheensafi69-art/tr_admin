@@ -186,11 +186,10 @@ export default function CustomersPage() {
           <button
             type="button"
             onClick={() => setNationalityFilter('all')}
-            className={`flex-1 md:flex-none px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-              nationalityFilter === 'all'
+            className={`flex-1 md:flex-none px-4 py-2 rounded-xl text-xs font-bold transition-all ${nationalityFilter === 'all'
                 ? 'bg-amber-400 text-slate-950 font-black shadow-md shadow-amber-400/20'
                 : 'bg-white/[0.04] text-neutral-300 hover:text-white hover:bg-white/10 border border-white/10'
-            }`}
+              }`}
           >
             همه مسافران ({toPersianDigits(customers.length)})
           </button>
@@ -198,11 +197,10 @@ export default function CustomersPage() {
           <button
             type="button"
             onClick={() => setNationalityFilter('iranian')}
-            className={`flex-1 md:flex-none px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-              nationalityFilter === 'iranian'
+            className={`flex-1 md:flex-none px-4 py-2 rounded-xl text-xs font-bold transition-all ${nationalityFilter === 'iranian'
                 ? 'bg-emerald-500 text-slate-950 font-black shadow-md shadow-emerald-500/20'
                 : 'bg-white/[0.04] text-neutral-300 hover:text-white hover:bg-white/10 border border-white/10'
-            }`}
+              }`}
           >
             ایرانی ({toPersianDigits(iranianCount)})
           </button>
@@ -210,11 +208,10 @@ export default function CustomersPage() {
           <button
             type="button"
             onClick={() => setNationalityFilter('foreigner')}
-            className={`flex-1 md:flex-none px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-              nationalityFilter === 'foreigner'
+            className={`flex-1 md:flex-none px-4 py-2 rounded-xl text-xs font-bold transition-all ${nationalityFilter === 'foreigner'
                 ? 'bg-cyan-500 text-slate-950 font-black shadow-md shadow-cyan-500/20'
                 : 'bg-white/[0.04] text-neutral-300 hover:text-white hover:bg-white/10 border border-white/10'
-            }`}
+              }`}
           >
             اتباع خارجی ({toPersianDigits(foreignerCount)})
           </button>
@@ -365,239 +362,237 @@ export default function CustomersPage() {
         <ModalPortal>
           <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/85 backdrop-blur-xl p-4 overflow-y-auto">
             <div className="w-full max-w-4xl glass-panel-dark rounded-3xl border border-amber-400/40 p-6 sm:p-8 space-y-6 my-8 max-h-[90vh] overflow-y-auto shadow-[0_25px_60px_rgba(0,0,0,0.95),inset_0_1.5px_1px_rgba(255,255,255,0.25)] relative">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-amber-400/20 border border-amber-400/40 text-amber-300 text-xl font-black flex items-center justify-center shadow-lg shadow-amber-500/20">
-                  {selectedCustomer.full_name?.charAt(0) || 'م'}
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h2 className="text-lg sm:text-xl font-black text-white">
-                      {selectedCustomer.full_name}
-                    </h2>
-                    {selectedCustomer.is_repeat_customer && (
-                      <span className="text-[10px] bg-amber-400 text-slate-950 font-black px-2.5 py-0.5 rounded-full shadow-sm">
-                        VIP / مشتری وفادار
-                      </span>
-                    )}
+              {/* Modal Header */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-400/20 border border-amber-400/40 text-amber-300 text-xl font-black flex items-center justify-center shadow-lg shadow-amber-500/20">
+                    {selectedCustomer.full_name?.charAt(0) || 'م'}
                   </div>
-                  <span className="text-xs text-neutral-400 font-medium">
-                    پرونده جامع هویتی، سوابق رزرواسیون و گزارش مالی مسافر
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h2 className="text-lg sm:text-xl font-black text-white">
+                        {selectedCustomer.full_name}
+                      </h2>
+                      {selectedCustomer.is_repeat_customer && (
+                        <span className="text-[10px] bg-amber-400 text-slate-950 font-black px-2.5 py-0.5 rounded-full shadow-sm">
+                          VIP / مشتری وفادار
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-xs text-neutral-400 font-medium">
+                      پرونده جامع هویتی، سوابق رزرواسیون و گزارش مالی مسافر
+                    </span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setSelectedCustomer(null)}
+                  className="p-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-neutral-300 hover:text-white transition-colors border border-white/10"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Customer Details Strip */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1">
+                  <span className="text-neutral-400 block text-[11px]">ملیت و مدرک هویتی:</span>
+                  <span className="font-bold text-white block">
+                    {selectedCustomer.nationality_type === 'foreigner'
+                      ? `اتباع (${selectedCustomer.nationality_country || 'خارجی'})`
+                      : 'جمهوری اسلامی ایران'}
+                  </span>
+                  <span className="font-mono text-amber-300 font-bold block" dir="ltr">
+                    {selectedCustomer.nationality_type === 'foreigner'
+                      ? `گذرنامه: ${selectedCustomer.national_id || 'ثبت نشده'}`
+                      : `کد ملی: ${selectedCustomer.national_id || 'ثبت نشده'}`}
+                  </span>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1">
+                  <span className="text-neutral-400 block text-[11px]">شماره تماس مسافر:</span>
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-white font-bold text-sm block" dir="ltr">
+                      {selectedCustomer.phone}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        navigator.clipboard.writeText(selectedCustomer.phone || '');
+                        setCopiedPhone(true);
+                        setTimeout(() => setCopiedPhone(false), 2000);
+                      }}
+                      className="text-[10px] bg-white/[0.08] hover:bg-white/15 px-2 py-0.5 rounded text-neutral-300 font-bold"
+                    >
+                      {copiedPhone ? 'کپی شد' : 'کپی'}
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-2 pt-1 text-[11px]">
+                    <a
+                      href={`tel:${selectedCustomer.phone.replace(/[^0-9+]/g, '')}`}
+                      className="text-amber-300 hover:underline flex items-center gap-1 font-bold"
+                    >
+                      <Phone className="w-3 h-3" />
+                      <span>تماس مستقیم</span>
+                    </a>
+                    <span>•</span>
+                    <a
+                      href={`https://wa.me/${selectedCustomer.phone.replace(/[^0-9]/g, '')}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-emerald-400 hover:underline flex items-center gap-1 font-bold"
+                    >
+                      <MessageCircle className="w-3 h-3" />
+                      <span>واتساپ</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1">
+                  <span className="text-neutral-400 block text-[11px]">آدرس ایمیل مسافر:</span>
+                  <span className="font-mono text-neutral-300 block truncate" dir="ltr">
+                    {selectedCustomer.email || 'ثبت نشده'}
+                  </span>
+                  <span className="text-[10px] text-neutral-400 block">
+                    عضویت: {selectedCustomer.created_at ? formatToJalaliString(selectedCustomer.created_at.toString()) : 'ثبت اولیه'}
+                  </span>
+                </div>
+
+                <div className="p-3.5 rounded-2xl bg-amber-400/[0.08] border border-amber-400/30 space-y-1">
+                  <span className="text-amber-400 block text-[11px] font-bold">مجموع مبالغ رزروها:</span>
+                  <span className="font-mono text-amber-300 font-black text-base block">
+                    {totalLifetimeSpend.toLocaleString('fa-IR')} تومان
+                  </span>
+                  <span className="text-[10px] text-neutral-300 block">
+                    {toPersianDigits(customerBookings.length)} فقره سفارش اقامت
                   </span>
                 </div>
               </div>
 
-              <button
-                type="button"
-                onClick={() => setSelectedCustomer(null)}
-                className="p-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-neutral-300 hover:text-white transition-colors border border-white/10"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Customer Details Strip */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
-              <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1">
-                <span className="text-neutral-400 block text-[11px]">ملیت و مدرک هویتی:</span>
-                <span className="font-bold text-white block">
-                  {selectedCustomer.nationality_type === 'foreigner'
-                    ? `اتباع (${selectedCustomer.nationality_country || 'خارجی'})`
-                    : 'جمهوری اسلامی ایران'}
-                </span>
-                <span className="font-mono text-amber-300 font-bold block" dir="ltr">
-                  {selectedCustomer.nationality_type === 'foreigner'
-                    ? `گذرنامه: ${selectedCustomer.national_id || 'ثبت نشده'}`
-                    : `کد ملی: ${selectedCustomer.national_id || 'ثبت نشده'}`}
-                </span>
-              </div>
-
-              <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1">
-                <span className="text-neutral-400 block text-[11px]">شماره تماس مسافر:</span>
+              {/* Bookings History Section */}
+              <div className="space-y-3 pt-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-white font-bold text-sm block" dir="ltr">
-                    {selectedCustomer.phone}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      navigator.clipboard.writeText(selectedCustomer.phone || '');
-                      setCopiedPhone(true);
-                      setTimeout(() => setCopiedPhone(false), 2000);
-                    }}
-                    className="text-[10px] bg-white/[0.08] hover:bg-white/15 px-2 py-0.5 rounded text-neutral-300 font-bold"
-                  >
-                    {copiedPhone ? 'کپی شد' : 'کپی'}
-                  </button>
+                  <h3 className="text-sm font-black text-white flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-amber-400" />
+                    <span>سابقه کامل رزروها و اقامت‌های مسافر ({toPersianDigits(customerBookings.length)})</span>
+                  </h3>
+                  {loadingBookings && (
+                    <span className="text-xs text-neutral-400 flex items-center gap-1.5">
+                      <RefreshCw className="w-3 h-3 animate-spin text-amber-400" />
+                      <span>در حال فراخوانی سوابق...</span>
+                    </span>
+                  )}
                 </div>
-                <div className="flex items-center gap-2 pt-1 text-[11px]">
-                  <a
-                    href={`tel:${selectedCustomer.phone.replace(/[^0-9+]/g, '')}`}
-                    className="text-amber-300 hover:underline flex items-center gap-1 font-bold"
-                  >
-                    <Phone className="w-3 h-3" />
-                    <span>تماس مستقیم</span>
-                  </a>
-                  <span>•</span>
-                  <a
-                    href={`https://wa.me/${selectedCustomer.phone.replace(/[^0-9]/g, '')}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-emerald-400 hover:underline flex items-center gap-1 font-bold"
-                  >
-                    <MessageCircle className="w-3 h-3" />
-                    <span>واتساپ</span>
-                  </a>
-                </div>
-              </div>
 
-              <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-1">
-                <span className="text-neutral-400 block text-[11px]">آدرس ایمیل مسافر:</span>
-                <span className="font-mono text-neutral-300 block truncate" dir="ltr">
-                  {selectedCustomer.email || 'ثبت نشده'}
-                </span>
-                <span className="text-[10px] text-neutral-400 block">
-                  عضویت: {selectedCustomer.created_at ? formatToJalaliString(selectedCustomer.created_at.toString()) : 'ثبت اولیه'}
-                </span>
-              </div>
+                {customerBookings.length === 0 && !loadingBookings ? (
+                  <div className="p-8 text-center bg-white/[0.02] border border-white/10 rounded-2xl text-xs text-neutral-400">
+                    هیچ رزروی برای این مسافر ثبت نشده است.
+                  </div>
+                ) : (
+                  <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.02]">
+                    <table className="w-full text-right text-xs">
+                      <thead className="bg-white/[0.04] border-b border-white/10 text-neutral-400 font-bold">
+                        <tr>
+                          <th className="p-3">کد رهگیری</th>
+                          <th className="p-3">هتل و اقامتگاه</th>
+                          <th className="p-3">واحد رزرو شده</th>
+                          <th className="p-3">بازه اقامت (شمسی)</th>
+                          <th className="p-3">نوع اقامت</th>
+                          <th className="p-3">مبلغ کل فاکتور</th>
+                          <th className="p-3 text-center">وضعیت</th>
+                          <th className="p-3 text-center">واچر رسمی</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {customerBookings.map((b) => {
+                          const isConfirmed = b.status === 'confirmed' || b.payment_status === 'verified';
+                          const isCancelled = b.status === 'cancelled' || b.status === 'cancellation_requested';
 
-              <div className="p-3.5 rounded-2xl bg-amber-400/[0.08] border border-amber-400/30 space-y-1">
-                <span className="text-amber-400 block text-[11px] font-bold">مجموع مبالغ رزروها:</span>
-                <span className="font-mono text-amber-300 font-black text-base block">
-                  {totalLifetimeSpend.toLocaleString('fa-IR')} تومان
-                </span>
-                <span className="text-[10px] text-neutral-300 block">
-                  {toPersianDigits(customerBookings.length)} فقره سفارش اقامت
-                </span>
-              </div>
-            </div>
+                          return (
+                            <tr key={b.id} className="hover:bg-white/[0.03]">
+                              <td className="p-3 font-mono font-black text-amber-300" dir="ltr">
+                                {b.booking_code}
+                              </td>
 
-            {/* Bookings History Section */}
-            <div className="space-y-3 pt-2">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-black text-white flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-amber-400" />
-                  <span>سابقه کامل رزروها و اقامت‌های مسافر ({toPersianDigits(customerBookings.length)})</span>
-                </h3>
-                {loadingBookings && (
-                  <span className="text-xs text-neutral-400 flex items-center gap-1.5">
-                    <RefreshCw className="w-3 h-3 animate-spin text-amber-400" />
-                    <span>در حال فراخوانی سوابق...</span>
-                  </span>
+                              <td className="p-3 font-bold text-white">
+                                {b.hotel?.name || 'هتل تهران‌روم'}
+                              </td>
+
+                              <td className="p-3 text-neutral-200">
+                                {b.room?.name || 'اتاق استاندارد'}
+                              </td>
+
+                              <td className="p-3 text-neutral-300 text-[11px]">
+                                {formatToJalaliString(b.check_in_date)} تا {formatToJalaliString(b.check_out_date)}
+                              </td>
+
+                              <td className="p-3">
+                                <span className={`text-[10px] px-2 py-0.5 rounded-lg font-bold ${b.booking_type === 'daily'
+                                    ? 'bg-amber-400/10 text-amber-300'
+                                    : 'bg-cyan-400/10 text-cyan-300'
+                                  }`}>
+                                  {b.booking_type === 'daily' ? 'روزانه' : `ساعتی (${b.duration_hours || 3}h)`}
+                                </span>
+                              </td>
+
+                              <td className="p-3 font-mono font-bold text-white">
+                                {Number(b.total_amount).toLocaleString('fa-IR')} تومان
+                              </td>
+
+                              <td className="p-3 text-center">
+                                <span
+                                  className={`px-2.5 py-1 rounded-full text-[10px] font-black ${isConfirmed
+                                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                                      : isCancelled
+                                        ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
+                                        : 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
+                                    }`}
+                                >
+                                  {isConfirmed
+                                    ? 'تایید شده'
+                                    : isCancelled
+                                      ? 'لغو شده'
+                                      : 'در انتظار'}
+                                </span>
+                              </td>
+
+                              <td className="p-3 text-center">
+                                <a
+                                  href={`http://localhost:3000/voucher/${b.booking_code}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-300 hover:text-amber-200 bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/25 px-2.5 py-1 rounded-xl transition-all"
+                                >
+                                  <FileCheck2 className="w-3.5 h-3.5" />
+                                  <span>واچر</span>
+                                </a>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
                 )}
               </div>
 
-              {customerBookings.length === 0 && !loadingBookings ? (
-                <div className="p-8 text-center bg-white/[0.02] border border-white/10 rounded-2xl text-xs text-neutral-400">
-                  هیچ رزروی برای این مسافر ثبت نشده است.
-                </div>
-              ) : (
-                <div className="overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.02]">
-                  <table className="w-full text-right text-xs">
-                    <thead className="bg-white/[0.04] border-b border-white/10 text-neutral-400 font-bold">
-                      <tr>
-                        <th className="p-3">کد رهگیری</th>
-                        <th className="p-3">هتل و اقامتگاه</th>
-                        <th className="p-3">واحد رزرو شده</th>
-                        <th className="p-3">بازه اقامت (شمسی)</th>
-                        <th className="p-3">نوع اقامت</th>
-                        <th className="p-3">مبلغ کل فاکتور</th>
-                        <th className="p-3 text-center">وضعیت</th>
-                        <th className="p-3 text-center">واچر رسمی</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/5">
-                      {customerBookings.map((b) => {
-                        const isConfirmed = b.status === 'confirmed' || b.payment_status === 'verified';
-                        const isCancelled = b.status === 'cancelled' || b.status === 'cancellation_requested';
+              {/* Modal Footer */}
+              <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                <span className="text-xs text-neutral-400">
+                  سیستم رزرواسیون یکپارچه تهران‌روم
+                </span>
 
-                        return (
-                          <tr key={b.id} className="hover:bg-white/[0.03]">
-                            <td className="p-3 font-mono font-black text-amber-300" dir="ltr">
-                              {b.booking_code}
-                            </td>
-
-                            <td className="p-3 font-bold text-white">
-                              {b.hotel?.name || 'هتل تهران‌روم'}
-                            </td>
-
-                            <td className="p-3 text-neutral-200">
-                              {b.room?.name || 'اتاق استاندارد'}
-                            </td>
-
-                            <td className="p-3 text-neutral-300 text-[11px]">
-                              {formatToJalaliString(b.check_in_date)} تا {formatToJalaliString(b.check_out_date)}
-                            </td>
-
-                            <td className="p-3">
-                              <span className={`text-[10px] px-2 py-0.5 rounded-lg font-bold ${
-                                b.booking_type === 'daily'
-                                  ? 'bg-amber-400/10 text-amber-300'
-                                  : 'bg-cyan-400/10 text-cyan-300'
-                              }`}>
-                                {b.booking_type === 'daily' ? 'روزانه' : `ساعتی (${b.duration_hours || 3}h)`}
-                              </span>
-                            </td>
-
-                            <td className="p-3 font-mono font-bold text-white">
-                              {Number(b.total_amount).toLocaleString('fa-IR')} تومان
-                            </td>
-
-                            <td className="p-3 text-center">
-                              <span
-                                className={`px-2.5 py-1 rounded-full text-[10px] font-black ${
-                                  isConfirmed
-                                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                                    : isCancelled
-                                    ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
-                                    : 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
-                                }`}
-                              >
-                                {isConfirmed
-                                  ? 'تایید شده'
-                                  : isCancelled
-                                  ? 'لغو شده'
-                                  : 'در انتظار'}
-                              </span>
-                            </td>
-
-                            <td className="p-3 text-center">
-                              <a
-                                href={`http://localhost:3000/voucher/${b.booking_code}`}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-300 hover:text-amber-200 bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/25 px-2.5 py-1 rounded-xl transition-all"
-                              >
-                                <FileCheck2 className="w-3.5 h-3.5" />
-                                <span>واچر</span>
-                              </a>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </div>
-
-            {/* Modal Footer */}
-            <div className="flex items-center justify-between pt-4 border-t border-white/10">
-              <span className="text-xs text-neutral-400">
-                سیستم رزرواسیون یکپارچه تهران‌روم
-              </span>
-
-              <button
-                type="button"
-                onClick={() => setSelectedCustomer(null)}
-                className="px-6 py-2.5 rounded-2xl bg-white/[0.08] hover:bg-white/[0.15] text-white text-xs font-bold transition-all border border-white/10"
-              >
-                بستن پرونده
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedCustomer(null)}
+                  className="px-6 py-2.5 rounded-2xl bg-white/[0.08] hover:bg-white/[0.15] text-white text-xs font-bold transition-all border border-white/10"
+                >
+                  بستن پرونده
+                </button>
+              </div>
             </div>
           </div>
-        </div>
         </ModalPortal>
       )}
     </div>

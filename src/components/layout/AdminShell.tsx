@@ -52,7 +52,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   const handleLogout = async () => {
     try {
       await fetch('/api/auth/logout', { method: 'POST' });
-    } catch {}
+    } catch { }
     router.push('/login');
     router.refresh();
   };
@@ -161,11 +161,10 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                        isActive
-                          ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-[0_4px_20px_rgba(234,179,8,0.35),inset_0_1px_1px_rgba(255,255,255,0.4)] scale-[1.02]'
-                          : 'text-neutral-300 hover:text-white hover:bg-white/[0.06] hover:border hover:border-white/10'
-                      }`}
+                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${isActive
+                        ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-[0_4px_20px_rgba(234,179,8,0.35),inset_0_1px_1px_rgba(255,255,255,0.4)] scale-[1.02]'
+                        : 'text-neutral-300 hover:text-white hover:bg-white/[0.06] hover:border hover:border-white/10'
+                        }`}
                     >
                       <div className="flex items-center gap-2.5">
                         <Icon className={`w-4 h-4 ${isActive ? 'text-slate-950' : 'text-amber-400'}`} />
@@ -173,11 +172,10 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
                       </div>
                       {item.badge && (
                         <span
-                          className={`text-[9px] px-1.5 py-0.5 rounded-full font-black ${
-                            isActive
-                              ? 'bg-black/20 text-slate-950'
-                              : 'bg-amber-400/15 text-amber-300 border border-amber-400/30'
-                          }`}
+                          className={`text-[9px] px-1.5 py-0.5 rounded-full font-black ${isActive
+                            ? 'bg-black/20 text-slate-950'
+                            : 'bg-amber-400/15 text-amber-300 border border-amber-400/30'
+                            }`}
                         >
                           {item.badge}
                         </span>
@@ -250,11 +248,10 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all ${
-                    isActive
-                      ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-[0_4px_20px_rgba(234,179,8,0.35),inset_0_1px_1px_rgba(255,255,255,0.5)] scale-[1.02]'
-                      : 'text-neutral-300 hover:text-white hover:bg-white/[0.05] hover:border hover:border-white/10 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]'
-                  }`}
+                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-xs font-bold transition-all ${isActive
+                    ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-black shadow-[0_4px_20px_rgba(234,179,8,0.35),inset_0_1px_1px_rgba(255,255,255,0.5)] scale-[1.02]'
+                    : 'text-neutral-300 hover:text-white hover:bg-white/[0.05] hover:border hover:border-white/10 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]'
+                    }`}
                 >
                   <div className="flex items-center gap-3">
                     <Icon className={`w-4 h-4 ${isActive ? 'text-slate-950' : 'text-amber-400'}`} />
@@ -262,11 +259,10 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
                   </div>
                   {item.badge && (
                     <span
-                      className={`text-[10px] px-2 py-0.5 rounded-full font-black ${
-                        isActive
-                          ? 'bg-black/20 text-slate-950'
-                          : 'bg-amber-400/15 text-amber-300 border border-amber-400/30'
-                      }`}
+                      className={`text-[10px] px-2 py-0.5 rounded-full font-black ${isActive
+                        ? 'bg-black/20 text-slate-950'
+                        : 'bg-amber-400/15 text-amber-300 border border-amber-400/30'
+                        }`}
                     >
                       {item.badge}
                     </span>
