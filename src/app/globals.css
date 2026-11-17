@@ -185,7 +185,6 @@
   button,
   input,
   select,
-  .print\\:hidden,
   [class*="print:hidden"],
   .finance-screen-container,
   .screen-only {
